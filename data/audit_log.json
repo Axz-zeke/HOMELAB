@@ -1,0 +1,256 @@
+[
+  {
+    "id": "a756e85f-2421-4655-b50e-6bef5eef5c67",
+    "timestamp": "2026-09-06T14:01:37.106Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\Documents ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_28f49d15\\1788703296446_Documents",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "ee7ba93c-eccc-4d8b-b49d-150c8b6fb53c",
+    "timestamp": "2026-09-06T14:01:28.431Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\test2 ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_28f49d15\\1788703288428_test2",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "e480aabc-67ff-46fb-b5d8-142d315c9018",
+    "timestamp": "2026-09-06T14:01:17.772Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\test ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_28f49d15\\1788703277371_test",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "ea0b1a6f-84af-4c05-8623-bd98296cd858",
+    "timestamp": "2026-09-06T14:00:59.348Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\nas_health_probe_1788688645328.txt ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788703259347_nas_health_probe_1788688645328.txt",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "6cc23b56-e42c-43ec-885a-36b9a9761904",
+    "timestamp": "2026-09-06T14:00:54.553Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\primary_storage_probe_1788690701958.txt ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788703252659_primary_storage_probe_1788690701958.txt",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "6c332277-e49b-4262-9383-3976bf6be8e5",
+    "timestamp": "2026-09-06T13:27:44.584Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\test2",
+    "ipAddress": "127.0.0.1 (Create Folder)"
+  },
+  {
+    "id": "2cdb9aa9-64e7-4ddb-bfc9-eea3cd304936",
+    "timestamp": "2026-09-06T13:22:15.868Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\test",
+    "ipAddress": "127.0.0.1 (Create Folder)"
+  },
+  {
+    "id": "dc02a555-c4e5-4ce5-b7e3-dd28064c2a7b",
+    "timestamp": "2026-09-06T13:02:59.720Z",
+    "userId": "usr_bcc59278",
+    "userName": "SAI",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai_maasim_com",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User sai_maasim_com successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "e16272f6-566b-4355-97fd-a8e617bafc51",
+    "timestamp": "2026-09-06T13:02:44.259Z",
+    "userId": "usr_bcc59278",
+    "userName": "SAI",
+    "actionType": "PASSWORD_CHANGE",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai_maasim_com",
+    "ipAddress": "127.0.0.1 (Admin Password Reset)",
+    "details": "Password was reset for user sai_maasim_com."
+  },
+  {
+    "id": "3f225fc7-479e-4fb5-92b9-0bbf1fa75010",
+    "timestamp": "2026-09-06T13:02:32.201Z",
+    "userId": "usr_bcc59278",
+    "userName": "SAI",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai_maasim_com",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user sai_maasim_com (ADMIN) with physical home directory at D:\\NAS_Storage\\user_homes\\sai_maasim_com."
+  },
+  {
+    "id": "b0bae0fc-bfbe-418c-8c21-2602f72140c5",
+    "timestamp": "2026-09-06T13:01:19.149Z",
+    "userId": "usr_28f49d15",
+    "userName": "Marcus Vance",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User marcus successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "48987949-0251-436a-b28d-59c94e6bee9a",
+    "timestamp": "2026-09-06T13:00:57.833Z",
+    "userId": "usr_28f49d15",
+    "userName": "Marcus Vance",
+    "actionType": "PASSWORD_CHANGE",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus",
+    "ipAddress": "127.0.0.1 (Admin Password Reset)",
+    "details": "Password was reset for user marcus."
+  },
+  {
+    "id": "a30dbd7c-e4f6-48df-9ca9-f616cb27d4ea",
+    "timestamp": "2026-09-06T13:00:32.365Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "98dc921a-de1c-41e9-9e7f-7f5c44b54486",
+    "timestamp": "2026-09-06T13:00:14.549Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "6c04ec05-609e-4ff9-82ff-4c53deaf90fc",
+    "timestamp": "2026-09-06T13:00:03.814Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "ca64b6cf-3469-4f4f-b761-4277a4ba31e0",
+    "timestamp": "2026-09-06T12:54:51.768Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "3f127824-4604-4a0f-bde6-de477556c0b7",
+    "timestamp": "2026-09-06T12:46:41.430Z",
+    "userId": "usr_28f49d15",
+    "userName": "Marcus Vance",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus",
+    "ipAddress": "127.0.0.1 (Quota Update)",
+    "details": "Storage quota updated for marcus to 1 GB."
+  },
+  {
+    "id": "72fae994-9640-4602-9fea-6f7d869bfbd4",
+    "timestamp": "2026-09-06T12:46:30.687Z",
+    "userId": "usr_28f49d15",
+    "userName": "Marcus Vance",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user marcus (USER) with physical home directory at D:\\NAS_Storage\\user_homes\\marcus."
+  },
+  {
+    "id": "2a7351b1-5d4c-453d-aab7-cdc247f4f398",
+    "timestamp": "2026-09-06T12:35:02.939Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "USER_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (User Deletion)",
+    "details": "User testuser1 (testuser1@nas.local) was deleted from the system."
+  },
+  {
+    "id": "9fefd48c-5512-4661-abd4-4d9d10825d75",
+    "timestamp": "2026-09-06T12:35:02.934Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (Quota Update)",
+    "details": "Storage quota updated for testuser1 to 0 GB."
+  },
+  {
+    "id": "e2751892-537e-4e52-92ae-675fc3e3aed8",
+    "timestamp": "2026-09-06T12:35:02.930Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User testuser1 successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "5854edec-d66b-46b7-b80c-16f94ccb9017",
+    "timestamp": "2026-09-06T12:35:02.802Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "PASSWORD_CHANGE",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (Admin Password Reset)",
+    "details": "Password was reset for user testuser1."
+  },
+  {
+    "id": "6d6c03f3-93ce-4019-8c37-2dee7dabef24",
+    "timestamp": "2026-09-06T12:35:02.730Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User testuser1 successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "3dc488fe-f5d7-46f3-a869-c31f5f7eb7b3",
+    "timestamp": "2026-09-06T12:35:02.662Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User testuser1 successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "3adcadb7-dac9-4afd-a426-96390ff67365",
+    "timestamp": "2026-09-06T12:35:02.592Z",
+    "userId": "usr_c3d03c13",
+    "userName": "Test User One",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\testuser1",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user testuser1 (USER) with physical home directory at D:\\NAS_Storage\\user_homes\\testuser1."
+  },
+  {
+    "id": "db5d34a2-805e-4a4f-926a-50ae270b2d07",
+    "timestamp": "2026-09-06T12:35:02.424Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "30f2b0c4-8dfd-4da6-921a-bd9b7e8a4803",
+    "timestamp": "2026-09-06T11:55:28.677Z",
+    "userId": "user-1",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\HDSentinelTray.exe [Drive D: (Priority 1)]",
+    "ipAddress": "127.0.0.1 (Local Server Action)"
+  }
+]
