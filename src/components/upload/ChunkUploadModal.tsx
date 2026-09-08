@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/lib/auth/auth-context';
 import { checkQuota } from '@/lib/actions/quota';
+import { UploadErrorDialog, UploadErrorInfo } from '@/components/upload/UploadErrorDialog';
 import { 
   UploadCloud, 
   Pause, 
@@ -42,6 +43,10 @@ export function ChunkUploadModal({
   const [isDuplicateDetected, setIsDuplicateDetected] = useState(false);
   const [physicalSavedPath, setPhysicalSavedPath] = useState<string | null>(null);
 
+  // Global Error Dialog state
+  const [errorDialogOpen, setErrorDialogOpen] = useState(false);
+  const [errorDialogInfo, setErrorDialogInfo] = useState<UploadErrorInfo | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const isPausedRef = useRef(false);
   const uploadIdRef = useRef<string>('');
@@ -57,6 +62,8 @@ export function ChunkUploadModal({
       setErrorMessage(null);
       setIsDuplicateDetected(false);
       setPhysicalSavedPath(null);
+      setErrorDialogOpen(false);
+      setErrorDialogInfo(null);
       isPausedRef.current = false;
     }
   }, [open]);
@@ -79,16 +86,28 @@ export function ChunkUploadModal({
   };
 
   const startUpload = async () => {
-    if (!file) return;
+    if (!file || !currentUser) return;
 
     setStatus('checking');
     setErrorMessage(null);
 
-    // 1. Quota Check
+    // 1. Pre-Upload Quota Verification before chunk 0
     const quotaResult = await checkQuota(currentUser.id, file.size);
     if (!quotaResult.allowed) {
       setStatus('error');
-      setErrorMessage(quotaResult.error || 'Storage quota exceeded.');
+      const errText = quotaResult.error || 'Storage quota exceeded.';
+      setErrorMessage(errText);
+      setErrorDialogInfo({
+        type: 'storage_full',
+        title: 'Storage Space Exceeded',
+        message: quotaResult.formattedMessage || errText,
+        requiredBytes: quotaResult.requiredBytes || file.size,
+        remainingBytes: quotaResult.remainingBytes,
+        quotaBytes: quotaResult.quotaBytes,
+        usedBytes: quotaResult.usedBytes,
+        fileName: file.name,
+      });
+      setErrorDialogOpen(true);
       return;
     }
 
@@ -104,7 +123,7 @@ export function ChunkUploadModal({
   };
 
   const executeChunkUpload = async (startChunkIndex: number, uploadId: string) => {
-    if (!file) return;
+    if (!file || !currentUser) return;
 
     const total = Math.ceil(file.size / CHUNK_SIZE);
     let index = startChunkIndex;
@@ -126,6 +145,7 @@ export function ChunkUploadModal({
       formData.append('uploadId', uploadId);
       formData.append('chunkIndex', index.toString());
       formData.append('chunk', chunkBlob, file.name);
+      formData.append('userId', currentUser.id);
 
       try {
         const res = await fetch('/api/upload/chunk', {
@@ -135,6 +155,45 @@ export function ChunkUploadModal({
 
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
+
+          // Mid-transfer quota exceeded safeguard
+          if (res.status === 403 || errData.code === 'QUOTA_EXCEEDED') {
+            setErrorDialogInfo({
+              type: 'storage_full',
+              title: 'Storage Space Exceeded',
+              message:
+                errData.formattedMessage ||
+                errData.error ||
+                'Storage Quota Exceeded mid-transfer.',
+              requiredBytes: errData.requiredBytes || file.size,
+              remainingBytes: errData.remainingBytes,
+              quotaBytes: errData.quotaBytes,
+              fileName: file.name,
+            });
+            setErrorDialogOpen(true);
+            setStatus('error');
+            setErrorMessage(errData.error || 'Storage Quota Exceeded');
+            return;
+          }
+
+          // Active physical disk space safeguard
+          if (res.status === 507 || errData.code === 'DISK_FULL') {
+            setErrorDialogInfo({
+              type: 'server_error',
+              title: 'Upload Failed',
+              message:
+                errData.error ||
+                'Target storage drive is low on physical disk space.',
+              serverDetails: `Physical staging drive out of buffer space. Required ${((chunkBlob.size)/(1024*1024)).toFixed(1)} MB.`,
+              fileName: file.name,
+              onRetry: () => resumeUpload(),
+            });
+            setErrorDialogOpen(true);
+            setStatus('error');
+            setErrorMessage(errData.error || 'Staging Drive Full');
+            return;
+          }
+
           throw new Error(errData.error || `Chunk ${index} failed with status ${res.status}`);
         }
 
@@ -150,13 +209,48 @@ export function ChunkUploadModal({
         setUploadSpeed(`${speedMBs} MB/s`);
       } catch (err: any) {
         console.error('[ChunkUploadModal] Error uploading chunk:', err);
+
+        const isNetworkLoss =
+          !navigator.onLine ||
+          err instanceof TypeError ||
+          err?.message?.toLowerCase().includes('network') ||
+          err?.message?.toLowerCase().includes('failed to fetch') ||
+          err?.message?.toLowerCase().includes('connection');
+
+        if (isNetworkLoss) {
+          setErrorDialogInfo({
+            type: 'network_error',
+            title: 'Upload Interrupted',
+            message:
+              'Network connection lost during upload. Please check your internet connection and try again.',
+            currentChunk: index,
+            totalChunks: total,
+            fileName: file.name,
+            onRetry: () => resumeUpload(),
+          });
+          setErrorDialogOpen(true);
+          setStatus('paused');
+          setErrorMessage('Network connection lost during chunk transfer.');
+          return;
+        }
+
+        // Generic disk / server fault
+        setErrorDialogInfo({
+          type: 'server_error',
+          title: 'Upload Failed',
+          message: err?.message || 'Server fault while streaming chunks to disk buffer.',
+          serverDetails: `Failed on chunk ${index}/${total}: ${err?.message || 'Unknown server fault'}`,
+          fileName: file.name,
+          onRetry: () => resumeUpload(),
+        });
+        setErrorDialogOpen(true);
         setStatus('error');
         setErrorMessage(err?.message || 'Network error while streaming chunk to staging buffer.');
         return;
       }
     }
 
-    // 3. Assemble chunks directly on physical storage disk D:\NAS_Storage
+    // 3. Assemble chunks directly on physical storage disk
     try {
       setUploadSpeed('Assembling on physical drive...');
       const destinationFolder = isCameraRollMode
@@ -177,6 +271,27 @@ export function ChunkUploadModal({
 
       const assembleData = await assembleRes.json();
       if (!assembleRes.ok || !assembleData.success) {
+        if (assembleRes.status === 403 || assembleData.code === 'QUOTA_EXCEEDED') {
+          setErrorDialogInfo({
+            type: 'storage_full',
+            title: 'Storage Space Exceeded',
+            message: assembleData.formattedMessage || assembleData.error,
+            requiredBytes: assembleData.requiredBytes || file.size,
+            remainingBytes: assembleData.remainingBytes,
+            quotaBytes: assembleData.quotaBytes,
+            fileName: file.name,
+          });
+          setErrorDialogOpen(true);
+        } else {
+          setErrorDialogInfo({
+            type: 'server_error',
+            title: 'Upload Failed',
+            message: assembleData.error || 'Failed to assemble file chunks on target disk.',
+            serverDetails: `Status ${assembleRes.status}: ${assembleData.error || 'File assembly error'}`,
+            fileName: file.name,
+          });
+          setErrorDialogOpen(true);
+        }
         throw new Error(assembleData.error || 'Failed to assemble file chunks on target disk.');
       }
 
@@ -196,14 +311,35 @@ export function ChunkUploadModal({
     setStatus('paused');
   };
 
-  const resumeUpload = () => {
+  const resumeUpload = async () => {
     isPausedRef.current = false;
     setStatus('uploading');
-    executeChunkUpload(currentChunk, uploadIdRef.current);
+    setErrorMessage(null);
+
+    let startChunk = currentChunk;
+    try {
+      // Query server for verified chunks received on disk buffer
+      const res = await fetch(`/api/upload/chunk?uploadId=${uploadIdRef.current}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.nextChunkIndex !== undefined) {
+          startChunk = data.nextChunkIndex;
+          setCurrentChunk(startChunk);
+          if (file) {
+            const total = Math.ceil(file.size / CHUNK_SIZE);
+            setProgress(Math.min(99, Math.round((startChunk / total) * 100)));
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('[ChunkUploadModal] Could not query server chunk status, resuming from local index:', e);
+    }
+
+    executeChunkUpload(startChunk, uploadIdRef.current);
   };
 
   const destinationFolder = isCameraRollMode
-    ? `/home/${currentUser.id}/Backups/Mobile Photos`
+    ? `/home/${currentUser?.id || 'user'}/Backups/Mobile Photos`
     : currentPath;
 
   return (
@@ -353,8 +489,8 @@ export function ChunkUploadModal({
 
         <DialogFooter className="p-4 border-t bg-muted/20 flex flex-row items-center justify-between">
           <div className="text-xs text-muted-foreground">
-            {currentUser.role === 'USER' && (
-              <span>Quota: {(currentUser.usedStorageBytes / 1e9).toFixed(1)} GB used</span>
+            {currentUser?.role === 'USER' && (
+              <span>Quota: {(((currentUser.usedStorageBytes ?? currentUser.used_bytes ?? 0)) / 1e9).toFixed(1)} GB used</span>
             )}
           </div>
 
@@ -399,6 +535,14 @@ export function ChunkUploadModal({
           </div>
         </DialogFooter>
       </DialogContent>
+
+      {/* Global Error Dialog Popup (Storage Limit, Network Disconnection, Disk/Server Error) */}
+      <UploadErrorDialog
+        open={errorDialogOpen}
+        onOpenChange={setErrorDialogOpen}
+        errorInfo={errorDialogInfo}
+        onRetry={resumeUpload}
+      />
     </Dialog>
   );
 }

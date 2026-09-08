@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/lib/auth/auth-context';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { 
-  ShieldCheck, 
   Server, 
   Lock, 
   User, 
@@ -21,8 +20,10 @@ import {
   HardDrive
 } from 'lucide-react';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
   const { login } = useAuth();
 
   const [identifier, setIdentifier] = useState('');
@@ -44,7 +45,10 @@ export default function LoginPage() {
     try {
       const result = await login(identifier.trim(), password);
       if (result.success) {
-        router.push('/dashboard');
+        const dest = (callbackUrl && callbackUrl.startsWith('/') && !callbackUrl.startsWith('//'))
+          ? decodeURIComponent(callbackUrl)
+          : '/dashboard';
+        router.push(dest);
       } else {
         setErrorMessage(result.error || 'Invalid credentials. Please try again.');
       }
@@ -53,12 +57,6 @@ export default function LoginPage() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleQuickFillAdmin = () => {
-    setIdentifier('superadmin');
-    setPassword('admin123');
-    setErrorMessage(null);
   };
 
   return (
@@ -114,7 +112,7 @@ export default function LoginPage() {
                   <Input
                     id="identifier"
                     type="text"
-                    placeholder="e.g. superadmin or user@nas.local"
+                    placeholder="Enter username or email"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     className="pl-9 h-10 text-sm"
@@ -171,28 +169,6 @@ export default function LoginPage() {
                 )}
               </Button>
             </form>
-
-            {/* Quick Demo Fill Helper */}
-            <div className="mt-6 pt-4 border-t border-border/60">
-              <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-                  Default Initial Superadmin
-                </span>
-                <Button
-                  variant="link"
-                  size="xs"
-                  onClick={handleQuickFillAdmin}
-                  className="h-auto p-0 text-primary hover:underline text-xs"
-                >
-                  Quick Fill
-                </Button>
-              </div>
-              <div className="bg-muted/40 rounded-md p-2 text-[11px] font-mono text-muted-foreground flex items-center justify-between">
-                <span>user: <strong>superadmin</strong></span>
-                <span>pass: <strong>admin123</strong></span>
-              </div>
-            </div>
           </CardContent>
         </Card>
 
@@ -203,5 +179,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-xs text-muted-foreground">Loading authentication...</div>}>
+      <LoginForm />
+    </Suspense>
   );
 }

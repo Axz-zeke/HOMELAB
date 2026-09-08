@@ -73,6 +73,21 @@ export function Sidebar() {
     },
   ];
 
+  if (!currentUser) {
+    return (
+      <aside className="w-64 border-r bg-card/60 backdrop-blur-xl flex flex-col hidden md:flex h-full shrink-0 select-none animate-pulse">
+        <div className="h-16 flex items-center border-b px-5">
+          <div className="w-9 h-9 rounded-xl bg-muted/60" />
+        </div>
+        <div className="flex-1 py-5 px-3 space-y-3">
+          <div className="h-8 bg-muted/40 rounded-lg" />
+          <div className="h-8 bg-muted/40 rounded-lg" />
+          <div className="h-8 bg-muted/40 rounded-lg" />
+        </div>
+      </aside>
+    );
+  }
+
   const usedBytes = currentUser.used_bytes ?? currentUser.usedStorageBytes ?? 0;
   const quotaBytes = currentUser.storage_quota_bytes ?? currentUser.storageQuotaBytes;
   const quotaPercent = quotaBytes

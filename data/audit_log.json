@@ -1,5 +1,1539 @@
 [
   {
+    "id": "f5687055-f9f3-488e-9b71-30c4a096b944",
+    "timestamp": "2026-09-08T14:47:51.127Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\com.stremio.one-1.6.13-2111688-armeabi-v7a.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "877f7102-4091-4f64-902f-f767e91157fe",
+    "timestamp": "2026-09-08T14:47:47.124Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\com.stremio.one-1.6.13-3160264-x86.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "d965ad8b-48bf-405c-af83-b67564653a0b",
+    "timestamp": "2026-09-08T14:47:42.945Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\com.stremio.one-1.6.13-4208840-arm64-v8a.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "13612586-5aeb-46e7-92b4-08a64776aa16",
+    "timestamp": "2026-09-08T14:47:38.910Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\10th-Anniv.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "11958882-6308-410a-a330-aa582e07ead8",
+    "timestamp": "2026-09-08T14:47:38.658Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\SUNDAY SERVICE_SEPTEMBER-21.docx [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "65cc6143-0bdf-42e0-ad51-161d245815d5",
+    "timestamp": "2026-09-08T14:47:38.564Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\10-Anniv.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "bc504dd5-0609-4a9e-8bf4-f82d4353c28f",
+    "timestamp": "2026-09-08T14:47:38.274Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\WFH LOGS - ADMIN TEAM.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "b7ecdc02-2816-43db-9636-75673ba3d0af",
+    "timestamp": "2026-09-08T14:47:38.139Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Red Oak Anniv Lyrics and Chords for Bass.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "cdcc0023-fa92-4823-ae54-a1e40bde3f0d",
+    "timestamp": "2026-09-08T14:47:38.004Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Sunday Worship 6-22-2025.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "6649ec50-be29-4b65-b197-3c0ba9d972d5",
+    "timestamp": "2026-09-08T14:47:37.845Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IMG_3789.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "b4c010c7-a659-4080-b679-60cfe25054d9",
+    "timestamp": "2026-09-08T14:47:37.723Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\images.jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "1f1a8e9f-1074-438d-9367-007c9a7be845",
+    "timestamp": "2026-09-08T14:47:37.619Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Sunday-Worship-10-05-2025.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "6042d1c6-7c90-4a87-a842-c71cb6628fa9",
+    "timestamp": "2026-09-08T14:47:37.474Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "4eb3d74b-cb60-40cd-8d12-f8999bb4aef9",
+    "timestamp": "2026-09-08T14:47:37.278Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_91h95y91h95y91h9.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "b97d5559-a324-4cce-b8ae-cd2187c11d55",
+    "timestamp": "2026-09-08T14:47:36.979Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed (1).png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "5a8cd8a1-1beb-42b1-b099-3cc980780a0e",
+    "timestamp": "2026-09-08T14:47:36.816Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_eqh2fmeqh2fmeqh2.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "fe8099d1-6c17-4443-a197-37035b206ea4",
+    "timestamp": "2026-09-08T14:47:36.572Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\image.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "d3cbb542-3df7-4566-81f8-d0b4bf12f0dd",
+    "timestamp": "2026-09-08T14:47:36.403Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "61a9202c-7063-4e5a-8c7a-0dc7583aa07f",
+    "timestamp": "2026-09-08T14:47:36.311Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed_waifu2x_art_noise3_scale.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "1a833666-f232-4c35-9ece-104c34f5cc8c",
+    "timestamp": "2026-09-08T14:47:36.021Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Wala-Kang-katulad.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "7ee3ec49-0fc1-456e-a319-6b257aa9a690",
+    "timestamp": "2026-09-08T14:47:35.927Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Lilim.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "073a32a8-5ad7-4a30-a872-4940f093092a",
+    "timestamp": "2026-09-08T14:47:35.830Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Sunday-Service-10-11-25.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "ded0b95f-cdba-45a6-bf26-bf45bb6721e7",
+    "timestamp": "2026-09-08T14:47:35.710Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_fct4zfct4zfct4zf.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "a2d15f0e-0ecf-434d-b67f-7c66e0b467ed",
+    "timestamp": "2026-09-08T14:47:35.410Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_uzmh4auzmh4auzmh.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "049cbd25-acf7-478b-a7eb-254a1aa2194b",
+    "timestamp": "2026-09-08T14:47:35.258Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_wk8wykwk8wykwk8w.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "0a253841-3738-4d27-acdf-6223d0f3664d",
+    "timestamp": "2026-09-08T14:47:35.037Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\PraiseNight2k24.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "5076c3f9-c585-4274-a990-5b8ce160a0b0",
+    "timestamp": "2026-09-08T14:47:34.885Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_g4d18cg4d18cg4d1.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "87cf8141-7322-4416-8434-f02af4709cde",
+    "timestamp": "2026-09-08T14:47:34.664Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_tbg53xtbg53xtbg5.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "db00cdab-07fb-45ad-9c73-fa6182d34c06",
+    "timestamp": "2026-09-08T14:47:34.488Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_2f2ldl2f2ldl2f2l (1).png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "0aa9df84-683f-4e93-9e9e-a8a7413981fa",
+    "timestamp": "2026-09-08T14:47:34.298Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_2f2ldl2f2ldl2f2l.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "2248419c-b89b-4370-b0c9-fedb8e613915",
+    "timestamp": "2026-09-08T14:47:34.156Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_ddwj8iddwj8iddwj.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "96d0cfe8-90ad-4afc-b356-3789d35b4ec6",
+    "timestamp": "2026-09-08T14:47:33.952Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_2f2ldl2f2ldl2f2l (1)_waifu2x_photo_noise3_scale.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "f721ab93-1c79-4a9f-8a84-d9c3c6011d91",
+    "timestamp": "2026-09-08T14:47:33.767Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_z7fbrlz7fbrlz7fb.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "584fc340-7968-4aaf-82e4-e150426442b5",
+    "timestamp": "2026-09-08T14:47:33.537Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_k8gaifk8gaifk8ga.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "9aef8c5b-c2b4-472a-b227-8c62fb70a384",
+    "timestamp": "2026-09-08T14:47:33.368Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IMG_1787.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "8cda4d73-429e-430b-b285-3ef663ad894a",
+    "timestamp": "2026-09-08T14:47:32.839Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\image.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "16eb0b31-33e0-47ec-805b-20e69001c4dc",
+    "timestamp": "2026-09-08T14:47:32.671Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IMG_3161.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "e7f1795f-c4d7-4c4a-a426-43ee945b12dc",
+    "timestamp": "2026-09-08T14:47:32.506Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Screenshot_20251120-204029 (1)_waifu2x_photo_noise3_scale.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "d5072e7e-fa7c-45e1-bfc4-901e961da5bd",
+    "timestamp": "2026-09-08T14:47:32.363Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\ELECTRONICS DATA SHEET_(Front)_Bldg.26.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "74d438fa-c7a4-4fec-8adc-71cab557f5d4",
+    "timestamp": "2026-09-08T14:47:32.250Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\ELECTRONICS DATA SHEET_(Back)__Bldg.26.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "f4e21c4a-218b-4e8b-9146-4f4f3d333f38",
+    "timestamp": "2026-09-08T14:47:32.130Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\MOB-APP.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "601ea1d7-c06b-4159-8e5e-f8234dd5d259",
+    "timestamp": "2026-09-08T14:47:31.878Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IMG_3161.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "ca0898cf-2a81-4d44-971a-cc913f4cb26a",
+    "timestamp": "2026-09-08T14:47:31.739Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_9lyspl9lyspl9lys.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "3d1284ab-c1ae-4bd6-981a-bd96009cd353",
+    "timestamp": "2026-09-08T14:47:31.408Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\b6d66d2e-4.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "14234fef-6af3-44b6-8cee-2a43631e716c",
+    "timestamp": "2026-09-08T14:47:31.260Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed (1).jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "029fe496-d31e-4e2a-8f8d-d51f6ba27afc",
+    "timestamp": "2026-09-08T14:47:31.099Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed (2) (1).jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "f19fac77-4b19-48d6-ac05-0d70e7beccba",
+    "timestamp": "2026-09-08T14:47:30.993Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\unnamed (2).jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "2e3c257d-73ef-4ecc-b497-c330abf8f284",
+    "timestamp": "2026-09-08T14:47:30.859Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\images (1).jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "00161568-48cd-44ae-9c77-2ffc8f219b66",
+    "timestamp": "2026-09-08T14:47:30.747Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Praise-Night-2025-LricsxArrangement.docx [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "89960930-25a2-4d54-9cf7-23d24c840c86",
+    "timestamp": "2026-09-08T14:47:30.625Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\PROPOSED LAYOUT - GH MV.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "fd3f14a9-c6bc-43c0-88da-3ccf4b8e0002",
+    "timestamp": "2026-09-08T14:47:30.435Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Praise-Night-2025-LricsxArrangement (1).docx [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "a76c4e24-8f10-44a9-8956-7ece6eb50ad1",
+    "timestamp": "2026-09-08T14:47:30.328Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\1766052374395.gif [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "04fc0d5c-7768-4f05-8ee5-b1424ac1f81d",
+    "timestamp": "2026-09-08T14:47:29.916Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\1766052384319_100.JPG [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "973ab32f-f398-4f19-8c29-54781ce93d2d",
+    "timestamp": "2026-09-08T14:47:29.681Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Praise-Night-Chords-no-Capo.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "cd7a07d9-706b-49cb-bbf8-82ffecc005b5",
+    "timestamp": "2026-09-08T14:47:29.560Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\EpicGamesStore.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "e92a06e1-aee0-4851-99b6-5c4e57edd9b5",
+    "timestamp": "2026-09-08T14:47:27.740Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Subday-Worship-no-Capo.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "0e5848e2-184c-4605-b68a-f2c5e0c15ba8",
+    "timestamp": "2026-09-08T14:47:27.644Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\image.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "2b58e7fc-8051-4775-addf-72fe00b3282c",
+    "timestamp": "2026-09-08T14:47:27.450Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IMG_20260107_130304.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "63a71b10-1806-4cde-bab3-c7e0c65c3d59",
+    "timestamp": "2026-09-08T14:47:27.288Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\January-11-Chords-with-without-capo.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "d3ffb71e-99c6-4bad-9cc0-c6a59f167a19",
+    "timestamp": "2026-09-08T14:47:27.211Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Sunday-Worship-01-18-2026.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "fafabae6-0c07-4e41-a095-d2433fd6d093",
+    "timestamp": "2026-09-08T14:47:27.131Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_lb3qgalb3qgalb3q.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "6370356b-8afb-4780-adc8-a561c64bb549",
+    "timestamp": "2026-09-08T14:47:26.792Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_byrwqwbyrwqwbyrw.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "6c2d49a0-ba44-4b03-b2b0-fe9bf5013a7e",
+    "timestamp": "2026-09-08T14:47:26.374Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Gemini_Generated_Image_9cwnfc9cwnfc9cwn.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "c55f2c88-7077-461b-b8e7-40874b239d09",
+    "timestamp": "2026-09-08T14:47:26.044Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Screenshot_20260123-200349_waifu2x_photo_noise3_scale (1).png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "04fc3663-ec32-4e7b-ad37-6182627fdf45",
+    "timestamp": "2026-09-08T14:47:25.304Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\PraiseNight-Guitar.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "05630c0d-ec5f-4958-aa40-9b3d9c9403aa",
+    "timestamp": "2026-09-08T14:47:25.116Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\CHORDS-4-BASS-anniv.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "ee5a22bc-6505-4e3e-9800-68f7bcf9de4b",
+    "timestamp": "2026-09-08T14:47:24.991Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Sunday-Worship-5-31-2025-no-CAPO-For-Bass-Gutar.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "2d078864-9176-4ac4-ab25-c89575f6864e",
+    "timestamp": "2026-09-08T14:47:24.906Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\PraiseNight2k24 (1).pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "f7a0a3ac-d1f8-4241-a044-4db9c2978778",
+    "timestamp": "2026-09-08T14:47:24.693Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\image.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "c1d063cd-452a-4566-b325-25c56f34848c",
+    "timestamp": "2026-09-08T14:47:24.554Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\image.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "c1d40996-8cc3-436a-a34d-91585b16a225",
+    "timestamp": "2026-09-08T14:47:24.476Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\image.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "8b9a4ffd-e2f8-403f-82a8-01b5d400826b",
+    "timestamp": "2026-09-08T14:47:24.390Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\MOVI0653.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "9d475849-d5bc-4139-b074-93202f4a8b43",
+    "timestamp": "2026-09-08T14:47:22.358Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IT CREDENTIALS.docx [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "95bebc79-a03f-4de3-84ec-e6f1806c7fe3",
+    "timestamp": "2026-09-08T14:47:22.207Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\ph-11134208-7r992-ltdc3kl8rex03b.jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "b9bd9618-2d6c-47c8-b8cf-1c844a71aedd",
+    "timestamp": "2026-09-08T14:47:22.071Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IT-CREDENTIALS.docx.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "57be3540-70e9-4aef-93b2-52d646ebdbea",
+    "timestamp": "2026-09-08T14:47:21.962Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\speedddd.gif [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "93940e99-5bec-44e3-b8df-5a9781070aa7",
+    "timestamp": "2026-09-08T14:47:21.836Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\images (2).jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "3d1b3e2a-5cd2-41b2-8127-2dbf2ecdaef4",
+    "timestamp": "2026-09-08T14:47:21.759Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\MOVI0731.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "fa8bec36-14e7-43c6-a656-a09d7d22d887",
+    "timestamp": "2026-09-08T14:47:12.346Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\1d137a3dbfa049318bafabb1ea87b86e.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "832af0dc-d46e-491d-ae71-c079c6e6060e",
+    "timestamp": "2026-09-08T14:47:12.236Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\images (3).jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "0565c7b0-0b2b-4c54-bb43-71fabb53acd9",
+    "timestamp": "2026-09-08T14:47:12.116Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\3d-render-6x8-concert-stage-260nw-2464562073.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "01f50b75-0120-4d65-b31c-8818d6022f22",
+    "timestamp": "2026-09-08T14:47:12.001Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\images (4).jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "20229a00-2295-49a4-897b-c226a9aaa4fb",
+    "timestamp": "2026-09-08T14:47:11.933Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\IT CREDENTIALS (1).docx [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "7f440c6f-a1e7-4f89-ba39-965a1e3bba69",
+    "timestamp": "2026-09-08T14:47:11.819Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\MOVI0766.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "c2faed8f-e574-466d-bf9c-12fe8475debf",
+    "timestamp": "2026-09-08T14:46:58.999Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\COUNTDOWN(1080p).mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "55d196b7-4ef8-4238-b007-59cbe9b4e197",
+    "timestamp": "2026-09-08T14:46:13.576Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\QRCode_3720.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "c2026e20-4d15-4ad9-b672-74fad2d2bd74",
+    "timestamp": "2026-09-08T14:46:13.441Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\transactionDetails (5-2-2026).pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "be48d2c4-5a16-46e7-88e0-d755eb072634",
+    "timestamp": "2026-09-08T14:46:13.356Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\DSCF0042.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "f3d9e4d8-654d-4b75-9f28-f2e1f5ce5b3c",
+    "timestamp": "2026-09-08T14:46:12.932Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\DSCF0152.JPG [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "d0504a52-3cbd-4849-9b47-e5f748563aa9",
+    "timestamp": "2026-09-08T14:46:12.659Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\com.stremio.one-2.3.2-5048578-armeabi-v7a.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "113bf867-97d3-4919-9167-b84b8d16f0f6",
+    "timestamp": "2026-09-08T14:46:06.385Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\_certificate_alexandersanalilalopez05-gmail-com_3370e7c2-3ef8-4751-8be3-0028f51208c8.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "0204eebc-7d9c-4d73-81f1-6c4ac60f274b",
+    "timestamp": "2026-09-08T14:46:06.268Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\com.stremio.one-2.3.2-6097154-x86.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "335dd2ac-7dd8-4f5f-bb2c-9b017c1dd3e0",
+    "timestamp": "2026-09-08T14:46:05.067Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\com.stremio.one-2.3.2-7145730-arm64-v8a.apk [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "6edb1cb9-8b21-41f1-b8af-3096210574d7",
+    "timestamp": "2026-09-08T14:45:58.032Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\38th Anniversary(POSTER SAMPLE)_1dd0c761-54f4-452a-ae32-82b01fd8c3e0.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "1c0126e8-1fbe-42dd-9b2e-98cd141ff966",
+    "timestamp": "2026-09-08T14:45:56.716Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Greek inspired.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "3e476848-6482-43eb-b8ec-55cb2c6cdfd8",
+    "timestamp": "2026-09-08T14:45:56.682Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\ph-11134207-81zte-mmb1poqbotu787.avif [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "837b2007-db85-46a6-9d09-d9e9be9435ac",
+    "timestamp": "2026-09-08T14:45:56.567Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Praise n Worship - Bass.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "19e1f08b-a2a7-41d8-9e34-59fd2791b696",
+    "timestamp": "2026-09-08T14:45:56.379Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\Check your warranty or service status.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "2d90339a-a154-4087-9a91-11a8befe3017",
+    "timestamp": "2026-09-08T14:45:56.233Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\images (5).jpeg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "4cbf732a-4468-48f8-86de-e6f6d59948db",
+    "timestamp": "2026-09-08T14:45:56.191Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\instagram-social-media-mobile-login-screen-page-template_539007-137.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "e6a3213f-8dd6-47c3-ab53-79847a02c484",
+    "timestamp": "2026-09-08T14:45:01.285Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\20260503_201846.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "ecb60224-cef9-48c4-9ba6-4130257b2f59",
+    "timestamp": "2026-09-08T14:44:02.804Z",
+    "userId": "usr_3aa8439a",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\IMG_6772.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "6d903114-a0bc-40a8-ab0d-9d99f1376a87",
+    "timestamp": "2026-09-08T14:43:39.519Z",
+    "userId": "usr_3aa8439a",
+    "userName": "Crishaira Silva",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai",
+    "ipAddress": "127.0.0.1 (Quota Update)",
+    "details": "Storage quota updated for sai to 1074 GB."
+  },
+  {
+    "id": "0dce9b86-0502-45b5-8b1e-93f5fbea094c",
+    "timestamp": "2026-09-08T14:40:54.514Z",
+    "userId": "usr_3aa8439a",
+    "userName": "Crishaira Silva",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User sai successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "fc2f12f3-bcff-4dcb-8946-731c85ce2927",
+    "timestamp": "2026-09-08T14:38:54.020Z",
+    "userId": "usr_3aa8439a",
+    "userName": "Crishaira Silva",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User sai successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "28a75b02-ac3b-4853-9592-f8d8ef7a7451",
+    "timestamp": "2026-09-08T14:37:19.867Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\VID_20251230_221930064.mp4 ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_06ad14e9\\1788878235690_VID_20251230_221930064.mp4",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "752ff1a9-1411-4ff8-a52f-7d9a418d55df",
+    "timestamp": "2026-09-08T14:37:09.852Z",
+    "userId": "usr_06ad14e9",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke\\VID_20251230_221930064.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "508eeea4-8a81-4c4c-927d-51f6370abbb8",
+    "timestamp": "2026-09-08T14:36:14.912Z",
+    "userId": "usr_06ad14e9",
+    "userName": "Alexander Lopez",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "ipAddress": "127.0.0.1 (Quota Update)",
+    "details": "Storage quota updated for axz_zeke to Unlimited."
+  },
+  {
+    "id": "1adad13c-a985-4853-aaac-8c6575c53f19",
+    "timestamp": "2026-09-08T14:33:33.406Z",
+    "userId": "usr_06ad14e9",
+    "userName": "Alexander Lopez",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User axz_zeke successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "340683dc-51db-482c-b6ac-bc011d6907f7",
+    "timestamp": "2026-09-08T14:33:02.495Z",
+    "userId": "usr_3aa8439a",
+    "userName": "Crishaira Silva",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User sai successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "8bd30ab1-d905-47dc-92d0-655fbb123ecf",
+    "timestamp": "2026-09-08T14:32:49.985Z",
+    "userId": "usr_3aa8439a",
+    "userName": "Crishaira Silva",
+    "actionType": "PASSWORD_CHANGE",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai",
+    "ipAddress": "127.0.0.1 (Admin Password Reset)",
+    "details": "Password was reset for user sai."
+  },
+  {
+    "id": "15e7628b-19c5-4407-8b36-266a202384b3",
+    "timestamp": "2026-09-08T14:31:16.800Z",
+    "userId": "usr_06ad14e9",
+    "userName": "Alexander Lopez",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User axz_zeke successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "53ee4888-a20a-4e76-8443-e8d43f9b6c47",
+    "timestamp": "2026-09-08T14:30:35.727Z",
+    "userId": "usr_06ad14e9",
+    "userName": "Alexander Lopez",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user axz_zeke (ADMIN) with physical home directory at D:\\NAS_Storage\\user_homes\\axz_zeke."
+  },
+  {
+    "id": "64960fc2-8f2e-4e45-b2be-b6e9124ede50",
+    "timestamp": "2026-09-08T14:30:02.188Z",
+    "userId": "usr_bdde1edc",
+    "userName": "Alexander Lopez",
+    "actionType": "USER_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "ipAddress": "127.0.0.1 (User Deletion)",
+    "details": "User axz_zeke (axz.zeke@gmail.com) was deleted from the system."
+  },
+  {
+    "id": "96820075-94ae-4f82-93ea-0cb2e9fa48bc",
+    "timestamp": "2026-09-08T14:29:51.325Z",
+    "userId": "usr_3aa8439a",
+    "userName": "Crishaira Silva",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user sai (ADMIN) with physical home directory at D:\\NAS_Storage\\user_homes\\sai."
+  },
+  {
+    "id": "2bc03310-0797-4ae3-a6d0-7e6d64d81b03",
+    "timestamp": "2026-09-08T14:28:59.545Z",
+    "userId": "usr_bdde1edc",
+    "userName": "Alexander Lopez",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user axz_zeke (USER) with physical home directory at D:\\NAS_Storage\\user_homes\\axz_zeke."
+  },
+  {
+    "id": "d83618b1-f4c1-414b-8975-5724a2f19556",
+    "timestamp": "2026-09-08T14:27:49.591Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "10e88c1f-3a2c-41dc-bf68-56e62fa4a263",
+    "timestamp": "2026-09-08T14:23:08.713Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "5a1afbf2-4afe-4888-a4d7-25d606c27dd9",
+    "timestamp": "2026-09-08T14:16:47.787Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User superadmin successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "7009409e-f2e9-4749-ba51-4fd206d46d94",
+    "timestamp": "2026-09-08T13:38:22.739Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup DISABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "88520871-7cc4-41a4-8a8d-5bf6a7c702b1",
+    "timestamp": "2026-09-08T13:38:20.618Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup ENABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "216556be-4838-4f06-97c6-9cad9357fe5e",
+    "timestamp": "2026-09-08T13:38:19.105Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup DISABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "90c06b00-293b-4d66-a91b-61668dd46e6d",
+    "timestamp": "2026-09-08T13:37:28.847Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup ENABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "0c7d39f3-795c-4599-ba7c-ece74e6c0c53",
+    "timestamp": "2026-09-08T13:27:27.433Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup DISABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "c3580633-93c2-47b9-802d-5d37ab5becac",
+    "timestamp": "2026-09-08T13:27:12.828Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup ENABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "4435faad-99f9-4b11-b4f7-f0d5ffcb489e",
+    "timestamp": "2026-09-08T13:27:06.920Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup DISABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "d2ff4ebc-6d3a-40c6-9c04-1be396d6de33",
+    "timestamp": "2026-09-08T13:26:50.883Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup ENABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "29f81e78-882e-4885-9d69-76c4f3af0f93",
+    "timestamp": "2026-09-08T13:26:49.964Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup DISABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "990d728e-2782-4bbb-a89d-60650d28ad52",
+    "timestamp": "2026-09-08T13:26:40.862Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup ENABLED for user superadmin. Directories: Photos & Videos."
+  },
+  {
+    "id": "3d3f0937-dbeb-4ac2-badb-de15b20c9668",
+    "timestamp": "2026-09-08T13:24:19.121Z",
+    "userId": "usr_28f49d15",
+    "userName": "Marcus Vance",
+    "actionType": "USER_UPDATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\Media_Backup",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos-style media backup ENABLED for user marcus. Directories: Photos & Videos."
+  },
+  {
+    "id": "6c4b3372-c6f1-4986-b530-b1ffed4d984c",
+    "timestamp": "2026-09-08T13:23:10.555Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup\\Videos\\beach_clip.mp4",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos backup: Video 'beach_clip.mp4' (0.00 MB) ingested."
+  },
+  {
+    "id": "032b0c81-edac-4101-88a4-296511b80bcf",
+    "timestamp": "2026-09-08T13:23:10.507Z",
+    "userId": "usr_superadmin",
+    "userName": "Super Admin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Media_Backup\\Photos\\vacation_2026.jpg",
+    "ipAddress": "127.0.0.1 (Media Backup)",
+    "details": "Google Photos backup: Photo 'vacation_2026.jpg' (0.00 MB) ingested."
+  },
+  {
+    "id": "74e25a03-9cfd-4c6e-a6b3-a4ae8615837f",
+    "timestamp": "2026-09-08T13:00:50.303Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\38th Anniversary(POSTER SAMPLE)_1dd0c761-54f4-452a-ae32-82b01fd8c3e0.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "f917c398-2f7f-4b59-bc60-d04b37719e16",
+    "timestamp": "2026-09-08T13:00:48.864Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\ph-11134207-81zte-mmb1poqbotu787.avif [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "651d1155-0dea-42ff-9a52-f13ee835871f",
+    "timestamp": "2026-09-08T13:00:48.702Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Greek inspired.png [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "07eab454-2f84-46b2-95d8-9d5cead38d05",
+    "timestamp": "2026-09-08T13:00:48.370Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Praise n Worship - Bass.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "bdf5ebd6-816b-4307-b85d-717153655e88",
+    "timestamp": "2026-09-08T13:00:48.134Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Check your warranty or service status.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "715aefac-cbb8-4eb8-a780-3f65d68c36ec",
+    "timestamp": "2026-09-08T13:00:47.964Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\instagram-social-media-mobile-login-screen-page-template_539007-137.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "aa874733-b9ae-44f9-89f2-40b5b9355563",
+    "timestamp": "2026-09-08T13:00:11.665Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\RESUME_20260708_082426_0000.pdf [Drive D: (Priority 1)]",
+    "ipAddress": "120.29.76.199"
+  },
+  {
+    "id": "9ff3d81d-2d29-45c7-a3a3-1b95b30f13e1",
+    "timestamp": "2026-09-08T12:30:29.638Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\VID_20251230_225807877.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "4aaef9dd-afe5-4a12-8f79-b6fabc78f531",
+    "timestamp": "2026-09-08T12:24:04.421Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\TEKKEN7.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "06a09319-aae6-41ce-bcd9-f1c9c9d6c066",
+    "timestamp": "2026-09-08T12:24:00.286Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\TEKKEN 7  2025-12-30 22-58-19.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "58072791-a441-4c71-bd75-ae9a21c3de73",
+    "timestamp": "2026-09-08T12:23:00.472Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Overcooked2.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "cb4f8129-d77c-4ce8-aa84-ce588a0d44b9",
+    "timestamp": "2026-09-08T12:22:56.178Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\PORTFOLIO - Antigravity - BinaryBackground.tsx● 2026-03-12 17-29-12.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "ff9c632c-2be4-49e6-8d32-41246ea0d7b9",
+    "timestamp": "2026-09-08T12:22:55.596Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Overcooked 2025-12-30 22-31-30.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "41e6124a-2a92-4f97-9890-5c56a556ff26",
+    "timestamp": "2026-09-08T12:22:09.464Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Overcooked 2025-12-30 22-19-20.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "de63b10e-e449-4a9b-bc9a-b9ffd480a507",
+    "timestamp": "2026-09-08T12:22:05.670Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\Overcooked 1.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "c86e1bb0-a0a7-43be-b76b-a648ce0127ef",
+    "timestamp": "2026-09-08T12:20:55.414Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\VID_20251230_222926706.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "6e41fdcb-30d6-4cde-9acf-cac7daa0e6b9",
+    "timestamp": "2026-09-08T12:20:19.876Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\VID_20251230_221930064.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "b9b6e07e-046c-43f2-a72b-79f2711efd56",
+    "timestamp": "2026-09-07T14:11:11.875Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\18.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "53697c9e-c8f2-47fe-8191-99afb8951043",
+    "timestamp": "2026-09-07T14:11:11.873Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\17.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "c522eef6-b535-4127-ac56-5a7a11406bb0",
+    "timestamp": "2026-09-07T14:11:11.812Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\16.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "66c877af-17d3-4bbe-a680-06bc6561b1d4",
+    "timestamp": "2026-09-07T14:11:11.765Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\13.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "d5cf0940-b758-423e-b44b-983393195471",
+    "timestamp": "2026-09-07T14:11:11.716Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\11.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "88bb55fc-38ff-4922-b136-f358681c395e",
+    "timestamp": "2026-09-07T14:11:11.641Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\10.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "de54b7f5-d9ea-4b2c-87ce-98db118e9c85",
+    "timestamp": "2026-09-07T14:11:11.596Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\8.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "e536ac01-a81b-4139-9938-05847fd08bef",
+    "timestamp": "2026-09-07T14:11:11.553Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\6.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "cd8bea48-7be4-476f-a21c-bc7f17e90373",
+    "timestamp": "2026-09-07T14:07:08.873Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\batch_test_2.txt [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "e4bebf46-2040-4242-93a8-11f12eb2cc7c",
+    "timestamp": "2026-09-07T14:07:08.867Z",
+    "userId": "usr_28f49d15",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\batch_test_1.txt [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "241fff62-7338-4b61-97fe-0b9215d754ec",
+    "timestamp": "2026-09-07T14:02:46.524Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\nature.kra [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "6fef18ef-7cc1-4a99-b1f8-c62f73a9d8ae",
+    "timestamp": "2026-09-07T13:59:30.739Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\nature.kra ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788789568698_nature.kra",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "2911d81a-a733-4ddf-9496-5577dce9181c",
+    "timestamp": "2026-09-07T13:59:23.720Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\nature.kra [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "ffaad22f-7972-4271-9988-4af286bcdc2f",
+    "timestamp": "2026-09-07T13:58:50.013Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\BMBC-LOGO.af ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788789530011_BMBC-LOGO.af",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "48635da3-87ab-4c36-b0dd-5057a926380a",
+    "timestamp": "2026-09-07T13:58:45.967Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\38th Anniversary (2).af ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788789525962_38th Anniversary (2).af",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "de3d11a7-b38a-4945-a3e1-c54d1b0cc4d9",
+    "timestamp": "2026-09-07T13:58:42.565Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\1.png ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788789520669_1.png",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "2c31324a-c846-4e50-a477-e113cf4370b5",
+    "timestamp": "2026-09-07T13:58:27.334Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\38th Anniversary (2).af [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "ae1bfd31-5f38-4676-89ad-33b6611354f3",
+    "timestamp": "2026-09-07T13:58:14.799Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\BMBC-LOGO.af [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "1f85be30-d722-4131-8afd-ee388a72453a",
+    "timestamp": "2026-09-07T13:57:51.749Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\1.png [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "ff7bae10-72ae-4c1d-9a80-d927c677e180",
+    "timestamp": "2026-09-07T13:56:21.434Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\test_5mb.bin [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "6015e01a-567a-459d-a6f1-de85f99038e4",
+    "timestamp": "2026-09-07T13:51:35.649Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\1.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "127.0.0.1 (Local Server Action)"
+  },
+  {
+    "id": "36ae6cbd-7c86-4496-a34f-f1b94faacfb4",
+    "timestamp": "2026-09-07T13:51:03.785Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\superadmin\\PORTFOLIO - Antigravity - BinaryBackground.tsx● 2026-03-12 17-29-12.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "653b6a0f-8d93-493e-a344-fa82bcb8901e",
+    "timestamp": "2026-09-07T03:51:40.268Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\Photos\\1.jpg ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788753100265_1.jpg",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "a0d27593-0382-4bd4-ac4b-e5ff1987be6e",
+    "timestamp": "2026-09-07T03:51:04.749Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\marcus\\Photos\\1.jpg [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "f0ab789e-e98f-429b-9958-daa6a8fb0cee",
+    "timestamp": "2026-09-07T02:57:00.765Z",
+    "userId": "usr_faf9ca5c",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\fernan\\test\\PORTFOLIO - Antigravity - BinaryBackground.tsx● 2026-03-12 17-29-12.mp4 [Drive D: (Priority 1)]",
+    "ipAddress": "::1"
+  },
+  {
+    "id": "c057e2c0-6c22-49ec-83e8-85932740464c",
+    "timestamp": "2026-09-07T02:56:18.785Z",
+    "userId": "usr_faf9ca5c",
+    "actionType": "FILE_UPLOADED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\fernan\\test",
+    "ipAddress": "127.0.0.1 (Create Folder)"
+  },
+  {
+    "id": "2c1af79a-8e6f-4a7a-8d60-b2281ff5a30f",
+    "timestamp": "2026-09-07T02:56:07.382Z",
+    "userId": "usr_faf9ca5c",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\fernan\\Photos ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_faf9ca5c\\1788749767378_Photos",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "646bacfb-ff9d-4180-8eb4-766e6cc9cdc9",
+    "timestamp": "2026-09-07T02:54:22.532Z",
+    "userId": "usr_faf9ca5c",
+    "userName": "Fernan",
+    "actionType": "LOGIN",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\fernan",
+    "ipAddress": "127.0.0.1 (Credentials Auth)",
+    "details": "User fernan successfully authenticated via bcrypt password hash verification."
+  },
+  {
+    "id": "8689d0d9-c5ec-4004-b389-148d00e400e4",
+    "timestamp": "2026-09-07T02:53:51.194Z",
+    "userId": "usr_faf9ca5c",
+    "userName": "Fernan",
+    "actionType": "USER_CREATED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\fernan",
+    "ipAddress": "127.0.0.1 (User Management)",
+    "details": "Created user fernan (USER) with physical home directory at D:\\NAS_Storage\\user_homes\\fernan."
+  },
+  {
+    "id": "fe0da5d3-0ced-48cf-ab68-210b093d3612",
+    "timestamp": "2026-09-07T02:53:11.668Z",
+    "userId": "usr_bcc59278",
+    "userName": "SAI",
+    "actionType": "USER_DELETED",
+    "targetPath": "D:\\NAS_Storage\\user_homes\\sai_maasim_com",
+    "ipAddress": "127.0.0.1 (User Deletion)",
+    "details": "User sai_maasim_com (sai@maasim.com) was deleted from the system."
+  },
+  {
+    "id": "32c0dacb-bf11-4081-9d75-51129c8a0799",
+    "timestamp": "2026-09-07T02:52:21.679Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\test_folder ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788749541629_test_folder",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "a8f99a99-69d1-4890-af05-2c49db43c9b3",
+    "timestamp": "2026-09-07T02:52:10.916Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\HDSentinelTray.exe ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788749530913_HDSentinelTray.exe",
+    "ipAddress": "127.0.0.1 (Archive — File)"
+  },
+  {
+    "id": "7457b78a-01d9-48ce-8e35-6e3832861fd6",
+    "timestamp": "2026-09-07T02:52:01.137Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\shared ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788749521081_shared",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "ff040c3d-03c5-4b79-938d-66208fac4107",
+    "timestamp": "2026-09-07T02:51:52.685Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\home ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788749512603_home",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
+    "id": "c1416ec9-3722-48e1-aed1-626ffcc8544b",
+    "timestamp": "2026-09-07T02:51:43.676Z",
+    "userId": "usr_superadmin",
+    "actionType": "FILE_DELETED",
+    "targetPath": "D:\\NAS_Storage\\assembled_tests ➔ F:\\NAS_Archive\\Recycle_Bin\\usr_superadmin\\1788749501786_assembled_tests",
+    "ipAddress": "127.0.0.1 (Archive — Directory)"
+  },
+  {
     "id": "a756e85f-2421-4655-b50e-6bef5eef5c67",
     "timestamp": "2026-09-06T14:01:37.106Z",
     "userId": "usr_28f49d15",

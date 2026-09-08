@@ -26,7 +26,18 @@ export interface User {
   updatedAt: Date | string;
 }
 
-export type DriveHealthStatus = 'HEALTHY' | 'WARNING' | 'CRITICAL';
+export type DriveHealthStatus = 'HEALTHY' | 'WARNING' | 'CRITICAL' | 'UNKNOWN' | 'VIRTUAL';
+
+export interface SmartHealthInfo {
+  operationalStatus?: string;
+  healthStatus?: string;
+  predictFailure?: boolean | null;
+  healthPercentage?: number;
+  friendlyName?: string;
+  mediaType?: string;
+  busType?: string;
+  isVirtualOrUnmapped?: boolean;
+}
 
 export type StorageType = 'primary' | 'archive';
 export type PoolPurpose = 'primary' | 'archive' | 'user_homes' | 'temp_uploads' | 'shared_media' | 'backups' | 'general';
@@ -56,6 +67,8 @@ export interface StoragePoolAllocation {
 export interface DriveVolume {
   id: string;
   name: string; // e.g., "Mass Storage Array", "Backup Archive"
+  volumeName?: string; // Actual volume label e.g., "MAIN NVMe", "HDD 1", "DATA_ARRAY"
+  deviceType?: string; // e.g., "NVMe", "SSD", "HDD", "USB"
   path: string; // e.g., 'D:/', 'F:/', '/mnt/disk1'
   mountPoint?: string;
   formatType: string; // e.g., 'NTFS', 'ext4', 'exFAT', 'ZFS'
@@ -65,6 +78,7 @@ export interface DriveVolume {
   isSystemDrive?: boolean; // Protect C:/ or / from being used for uploads
   temperatureCelsius?: number; // e.g. 34
   healthStatus?: DriveHealthStatus;
+  smartHealth?: SmartHealthInfo;
   readSpeedMBps?: number;
   writeSpeedMBps?: number;
   activePools?: StoragePoolAllocation[];

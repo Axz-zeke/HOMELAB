@@ -415,6 +415,9 @@ export default function DriveManagementPage() {
                   const primaryIndex = primaryPools.findIndex((p) => p.id === pool.id);
                   const isFirstPrimary = primaryIndex === 0;
                   const isLastPrimary = primaryIndex === primaryPools.length - 1;
+                  const matchingDrive = drives.find(
+                    (d) => d.mountPoint?.replace(/[:\\\/]/g, '').toUpperCase() === pool.driveLetter
+                  );
 
                   return (
                     <TableRow key={pool.id} className="hover:bg-muted/40">
@@ -425,13 +428,48 @@ export default function DriveManagementPage() {
                             {isPrimary ? <HardDrive className="w-4 h-4" /> : <Archive className="w-4 h-4" />}
                           </div>
                           <div>
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-1.5 flex-wrap">
                               <span className="font-mono text-sm font-bold text-foreground">
                                 Drive {pool.driveLetter}:
                               </span>
                               <span className="text-xs text-muted-foreground font-mono">
                                 ({pool.mountPath})
                               </span>
+                              {matchingDrive && (
+                                <span
+                                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-semibold border ${
+                                    matchingDrive.healthStatus === 'CRITICAL'
+                                      ? 'bg-destructive/15 text-destructive border-destructive/30'
+                                      : matchingDrive.healthStatus === 'WARNING'
+                                      ? 'bg-amber-500/15 text-amber-700 dark:text-amber-400 border-amber-500/30'
+                                      : matchingDrive.healthStatus === 'HEALTHY'
+                                      ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-emerald-500/30'
+                                      : 'bg-muted text-muted-foreground border-border'
+                                  }`}
+                                  title={`S.M.A.R.T. Health: ${matchingDrive.healthStatus || 'HEALTHY'}`}
+                                >
+                                  {matchingDrive.healthStatus === 'HEALTHY' ? (
+                                    <>
+                                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                                      Healthy ({matchingDrive.smartHealth?.healthPercentage ?? 100}%)
+                                    </>
+                                  ) : matchingDrive.healthStatus === 'CRITICAL' ? (
+                                    <>
+                                      <AlertTriangle className="w-2.5 h-2.5 shrink-0" />
+                                      Critical
+                                    </>
+                                  ) : matchingDrive.healthStatus === 'WARNING' ? (
+                                    <>
+                                      <AlertTriangle className="w-2.5 h-2.5 shrink-0" />
+                                      Warning
+                                    </>
+                                  ) : matchingDrive.healthStatus === 'VIRTUAL' ? (
+                                    'N/A (Virtual)'
+                                  ) : (
+                                    'Unknown'
+                                  )}
+                                </span>
+                              )}
                             </div>
                             <p className="font-mono text-[11px] text-muted-foreground truncate max-w-[200px]" title={pool.targetDirectory}>
                               {pool.targetDirectory}
@@ -588,39 +626,89 @@ export default function DriveManagementPage() {
                   className="p-3.5 rounded-xl border border-border/80 bg-card text-card-foreground shadow-xs flex flex-col justify-between space-y-2.5"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-bold text-sm font-mono text-foreground">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="font-bold text-sm font-mono text-foreground shrink-0">
                           {letter}:
                         </span>
-                        <span className="text-xs font-medium text-muted-foreground truncate max-w-[120px]">
-                          {drive.name}
+                        <span
+                          className="text-xs font-semibold text-foreground truncate"
+                          title={`${letter}: ${drive.volumeName || drive.name} (${drive.deviceType || 'Disk'})${drive.smartHealth?.friendlyName ? ` • Hardware: ${drive.smartHealth.friendlyName}` : ''}`}
+                        >
+                          {drive.volumeName || drive.name}
+                        </span>
+                        <span className="text-[10px] font-mono text-muted-foreground shrink-0 font-medium">
+                          ({drive.deviceType || 'Disk'})
                         </span>
                       </div>
-                      <p className="text-[10px] font-mono text-muted-foreground mt-0.5">
-                        {drive.formatType} • {drive.temperatureCelsius || 34}°C
-                      </p>
+                      <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                        <span className="text-[10px] font-mono text-muted-foreground shrink-0">
+                          {drive.formatType} • {drive.temperatureCelsius || 34}°C
+                        </span>
+                        <span className="text-[10px] text-muted-foreground">•</span>
+                        {drive.healthStatus === 'CRITICAL' ? (
+                          <span
+                            title="S.M.A.R.T. Alert: Predict Failure or Unrecoverable Hardware Errors detected! Backup and replace drive immediately."
+                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-destructive/15 text-destructive border border-destructive/30 text-[9px] font-semibold cursor-help animate-pulse shrink-0"
+                          >
+                            <AlertTriangle className="w-2.5 h-2.5 shrink-0" />
+                            Critical (Failure Risk)
+                          </span>
+                        ) : drive.healthStatus === 'WARNING' ? (
+                          <span
+                            title="S.M.A.R.T. Warning: Degraded performance, reallocated sectors, or high temperature."
+                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30 text-[9px] font-semibold cursor-help shrink-0"
+                          >
+                            <AlertTriangle className="w-2.5 h-2.5 shrink-0" />
+                            Warning (Caution)
+                          </span>
+                        ) : drive.healthStatus === 'HEALTHY' ? (
+                          <span
+                            title={`S.M.A.R.T. Status: ${drive.smartHealth?.operationalStatus || 'OK'} - Hardware disk healthy.`}
+                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-[9px] font-semibold shrink-0"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                            Healthy ({drive.smartHealth?.healthPercentage ?? 100}%)
+                          </span>
+                        ) : drive.healthStatus === 'VIRTUAL' ? (
+                          <span
+                            title="Virtual or RAM disk volume without physical SMART hardware telemetry."
+                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-muted/60 text-muted-foreground border border-border/60 text-[9px] font-medium shrink-0"
+                          >
+                            N/A (Virtual)
+                          </span>
+                        ) : (
+                          <span
+                            title="Unmapped volume or SMART hardware telemetry unavailable."
+                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground border border-border text-[9px] font-medium shrink-0"
+                          >
+                            Unknown (Unmapped)
+                          </span>
+                        )}
+                      </div>
                     </div>
 
-                    {drive.isSystemDrive ? (
-                      <Badge variant="outline" className="text-[9px] font-mono bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20">
-                        OS (C:)
-                      </Badge>
-                    ) : assignedPool ? (
-                      <Badge className={`text-[9px] ${assignedPool.type === 'primary' ? (assignedPool.priority === 1 ? 'bg-emerald-600 text-white' : 'bg-blue-600 text-white') : 'bg-secondary text-secondary-foreground'}`}>
-                        {assignedPool.type === 'primary' ? `P${assignedPool.priority}` : 'Archive'}
-                      </Badge>
-                    ) : (
-                      <Button
-                        variant="ghost"
-                        size="xs"
-                        onClick={() => handleOpenAddStorage(letter)}
-                        className="text-[10px] h-6 px-2 gap-1 text-primary hover:bg-primary/10"
-                      >
-                        <Plus className="w-3 h-3" />
-                        Assign
-                      </Button>
-                    )}
+                    <div className="shrink-0">
+                      {drive.isSystemDrive ? (
+                        <Badge variant="outline" className="text-[9px] font-mono bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20">
+                          OS (C:)
+                        </Badge>
+                      ) : assignedPool ? (
+                        <Badge className={`text-[9px] ${assignedPool.type === 'primary' ? (assignedPool.priority === 1 ? 'bg-emerald-600 text-white' : 'bg-blue-600 text-white') : 'bg-secondary text-secondary-foreground'}`}>
+                          {assignedPool.type === 'primary' ? `P${assignedPool.priority}` : 'Archive'}
+                        </Badge>
+                      ) : (
+                        <Button
+                          variant="ghost"
+                          size="xs"
+                          onClick={() => handleOpenAddStorage(letter)}
+                          className="text-[10px] h-6 px-2 gap-1 text-primary hover:bg-primary/10"
+                        >
+                          <Plus className="w-3 h-3" />
+                          Assign
+                        </Button>
+                      )}
+                    </div>
                   </div>
 
                   {/* Meter */}

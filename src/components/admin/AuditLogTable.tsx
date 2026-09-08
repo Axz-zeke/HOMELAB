@@ -63,7 +63,9 @@ export function AuditLogTable({ logs }: Props) {
             {filtered.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className="text-center py-12 text-muted-foreground">
-                  No audit events recorded for the selected filter.
+                  {logs.length === 0
+                    ? 'No audit events logged yet. Events will appear here automatically as users interact with the system.'
+                    : 'No audit events recorded for the selected filter.'}
                 </TableCell>
               </TableRow>
             ) : (

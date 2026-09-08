@@ -2,15 +2,21 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { User, UserRole, FolderPermission } from '@/lib/types';
-import { getUsersAction, authenticateUserAction } from '@/lib/actions/users';
+import {
+  getUsersAction,
+  authenticateUserAction,
+  logoutAction,
+  switchUserAction,
+  getSessionUserAction,
+} from '@/lib/actions/users';
 
 interface AuthContextType {
-  currentUser: User;
+  currentUser: User | null;
   users: User[];
   userPermissions: FolderPermission[];
   login: (identifier: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  logout: () => void;
-  switchUser: (userId: string) => void;
+  logout: () => Promise<void>;
+  switchUser: (userId: string) => Promise<void>;
   refreshUsers: () => Promise<void>;
   isSuperadmin: boolean;
   isAdmin: boolean;
@@ -21,56 +27,46 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Initial fallback user before database read completes
-const DEFAULT_FALLBACK_USER: User = {
-  id: 'usr_superadmin',
-  username: 'superadmin',
-  email: 'superadmin@nas.local',
-  name: 'Super Admin',
-  role: UserRole.SUPERADMIN,
-  home_directory_path: 'D:\\NAS_Storage\\user_homes\\superadmin',
-  homePath: '/user_homes/superadmin',
-  storage_quota_bytes: null,
-  storageQuotaBytes: null,
-  used_bytes: 0,
-  usedStorageBytes: 0,
-  isLocked: true,
-  createdAt: new Date('2025-01-01'),
-  updatedAt: new Date(),
-};
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<User>(DEFAULT_FALLBACK_USER);
-  const [users, setUsers] = useState<User[]>([DEFAULT_FALLBACK_USER]);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load real users from the dynamic database on mount
+  // Load real authenticated session user from database on mount
   const refreshUsers = useCallback(async () => {
     try {
-      const fetched = await getUsersAction();
-      if (fetched && fetched.length > 0) {
-        setUsers(fetched);
+      setIsLoading(true);
+      const sessionUser = await getSessionUserAction();
 
-        const savedUserId = typeof window !== 'undefined'
-          ? localStorage.getItem('homelab_active_user_id')
-          : null;
+      if (sessionUser) {
+        setCurrentUser(sessionUser);
+        try {
+          localStorage.setItem('homelab_active_user_id', sessionUser.id);
+        } catch {}
 
-        if (savedUserId) {
-          const matched = fetched.find((u) => u.id === savedUserId);
-          if (matched) {
-            setCurrentUser(matched);
-            return;
-          }
+        // Fetch users list for admins / account switcher
+        const fetched = await getUsersAction();
+        if (fetched && fetched.length > 0) {
+          setUsers(fetched);
         }
+      } else {
+        // No valid session exists
+        setCurrentUser(null);
+        setUsers([]);
+        try {
+          localStorage.removeItem('homelab_active_user_id');
+        } catch {}
 
-        // Default to superadmin or first user if no valid stored session
-        setCurrentUser((prev) => {
-          const stillExists = fetched.find((u) => u.id === prev.id);
-          return stillExists || fetched[0];
-        });
+        // If client is currently visiting a dashboard page, clear any stale cookie and redirect to login
+        if (typeof window !== 'undefined' && window.location.pathname.startsWith('/dashboard')) {
+          await logoutAction().catch(() => {});
+          const callback = encodeURIComponent(window.location.pathname + window.location.search);
+          window.location.href = `/login?callbackUrl=${callback}`;
+        }
       }
     } catch (err) {
-      console.error('[AuthProvider] Failed to fetch users:', err);
+      console.error('[AuthProvider] Failed to fetch session user:', err);
+      setCurrentUser(null);
     } finally {
       setIsLoading(false);
     }
@@ -81,56 +77,71 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [refreshUsers]);
 
   /**
-   * Validates entered credentials with bcrypt on server and sets active session.
+   * Validates entered credentials with bcrypt on server and sets active session cookie.
    */
   const login = async (identifier: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
+      setIsLoading(true);
       const res = await authenticateUserAction(identifier, password);
       if (res.success && res.user) {
         setCurrentUser(res.user);
         try {
           localStorage.setItem('homelab_active_user_id', res.user.id);
         } catch {}
-        // Refresh list to sync live quota
-        refreshUsers();
+        const fetched = await getUsersAction();
+        if (fetched) setUsers(fetched);
         return { success: true };
       }
       return { success: false, error: res.error || 'Invalid credentials.' };
     } catch {
       return { success: false, error: 'Authentication request failed.' };
+    } finally {
+      setIsLoading(false);
     }
   };
 
   /**
-   * Logs out current session and switches back to Superadmin or redirects.
+   * Logs out current session, deletes cookie, and redirects to /login.
    */
-  const logout = () => {
+  const logout = async () => {
     try {
-      localStorage.removeItem('homelab_active_user_id');
-    } catch {}
-    // If other users exist, reset to superadmin
-    const superadmin = users.find((u) => u.role === UserRole.SUPERADMIN);
-    if (superadmin) {
-      setCurrentUser(superadmin);
+      await logoutAction();
+    } catch (err) {
+      console.error('[AuthProvider] Logout action error:', err);
+    } finally {
+      try {
+        localStorage.removeItem('homelab_active_user_id');
+      } catch {}
+      setCurrentUser(null);
+      setUsers([]);
+      if (typeof window !== 'undefined') {
+        window.location.href = '/login';
+      }
     }
   };
 
   /**
-   * Fast role / account switcher for convenience.
+   * Switches active account by verifying user and reissuing session cookie.
    */
-  const switchUser = (userId: string) => {
-    const target = users.find((u) => u.id === userId);
-    if (target) {
-      setCurrentUser(target);
-      try {
-        localStorage.setItem('homelab_active_user_id', target.id);
-      } catch {}
+  const switchUser = async (userId: string) => {
+    try {
+      const res = await switchUserAction(userId);
+      if (res.success && res.user) {
+        setCurrentUser(res.user);
+        try {
+          localStorage.setItem('homelab_active_user_id', res.user.id);
+        } catch {}
+        const fetched = await getUsersAction();
+        if (fetched) setUsers(fetched);
+      }
+    } catch (err) {
+      console.error('[AuthProvider] Switch user error:', err);
     }
   };
 
-  const isSuperadmin = currentUser.role === UserRole.SUPERADMIN;
-  const isAdmin = currentUser.role === UserRole.ADMIN;
-  const isUser = currentUser.role === UserRole.USER;
+  const isSuperadmin = currentUser?.role === UserRole.SUPERADMIN;
+  const isAdmin = currentUser?.role === UserRole.ADMIN;
+  const isUser = currentUser?.role === UserRole.USER;
   const canManageSystem = isSuperadmin || isAdmin;
 
   // Standard user folder permissions

@@ -4,10 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/lib/auth/auth-context';
-import { INITIAL_FILES } from '@/lib/data/mock-db';
-import { filterAccessibleItems } from '@/lib/rbac/path-validator';
+import { searchFilesAction } from '@/lib/actions/files-search';
 import { FileItem } from '@/lib/types';
-import { Search, File, Folder, Film, Image as ImageIcon, Music, Code, FileText } from 'lucide-react';
+import { Search, File, Folder, Film, Image as ImageIcon, Music, Code, FileText, Loader2 } from 'lucide-react';
 
 interface GlobalSearchDialogProps {
   open: boolean;
@@ -16,8 +15,10 @@ interface GlobalSearchDialogProps {
 }
 
 export function GlobalSearchDialog({ open, onOpenChange, onSelectFile }: GlobalSearchDialogProps) {
-  const { currentUser, userPermissions } = useAuth();
+  const { currentUser } = useAuth();
   const [query, setQuery] = useState('');
+  const [results, setResults] = useState<FileItem[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   // Close on Escape or shortcut
   useEffect(() => {
@@ -31,16 +32,24 @@ export function GlobalSearchDialog({ open, onOpenChange, onSelectFile }: GlobalS
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [open, onOpenChange]);
 
-  // Filter files strictly scoped to the active user's permissions
-  const accessibleFiles = filterAccessibleItems(INITIAL_FILES, currentUser, userPermissions);
-  
-  const searchResults = query.trim() === ''
-    ? accessibleFiles.slice(0, 6)
-    : accessibleFiles.filter(
-        (f) =>
-          f.name.toLowerCase().includes(query.toLowerCase()) ||
-          f.path.toLowerCase().includes(query.toLowerCase())
-      );
+  // Query real filesystem via searchFilesAction
+  useEffect(() => {
+    if (!open || !currentUser) return;
+    setIsSearching(true);
+    const timer = setTimeout(async () => {
+      try {
+        const files = await searchFilesAction(currentUser.id, query);
+        setResults(files);
+      } catch (err) {
+        console.error('[GlobalSearch] Error searching files:', err);
+        setResults([]);
+      } finally {
+        setIsSearching(false);
+      }
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [open, query, currentUser?.id]);
 
   const getFileIcon = (file: FileItem) => {
     if (file.isDirectory) return <Folder className="w-4 h-4 text-primary fill-primary/20" />;
@@ -81,16 +90,28 @@ export function GlobalSearchDialog({ open, onOpenChange, onSelectFile }: GlobalS
         </DialogHeader>
 
         <div className="p-2 max-h-80 overflow-y-auto space-y-1">
-          <div className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-            {query.trim() === '' ? 'Recent Scoped Items' : `Found ${searchResults.length} matches`}
+          <div className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center justify-between">
+            <span>
+              {isSearching
+                ? 'Searching filesystem...'
+                : query.trim() === ''
+                ? 'Accessible Home Items'
+                : `Found ${results.length} match${results.length === 1 ? '' : 'es'}`}
+            </span>
+            {isSearching && <Loader2 className="w-3 h-3 animate-spin text-muted-foreground" />}
           </div>
 
-          {searchResults.length === 0 ? (
+          {isSearching && results.length === 0 ? (
+            <div className="p-8 text-center text-sm text-muted-foreground flex flex-col items-center gap-2">
+              <Loader2 className="w-5 h-5 animate-spin text-primary" />
+              <span>Scanning physical directory...</span>
+            </div>
+          ) : results.length === 0 ? (
             <div className="p-8 text-center text-sm text-muted-foreground">
               No files or folders found within your accessible directories.
             </div>
           ) : (
-            searchResults.map((item) => (
+            results.map((item) => (
               <button
                 key={item.id}
                 onClick={() => {
@@ -121,8 +142,8 @@ export function GlobalSearchDialog({ open, onOpenChange, onSelectFile }: GlobalS
         </div>
 
         <div className="px-4 py-2 border-t bg-muted/30 flex items-center justify-between text-xs text-muted-foreground">
-          <span>Role Scope: <strong className="text-foreground">{currentUser.role}</strong></span>
-          <span>Access: {currentUser.role === 'SUPERADMIN' ? 'Root Filesystem' : currentUser.homePath}</span>
+          <span>Role Scope: <strong className="text-foreground">{currentUser?.role || 'Guest'}</strong></span>
+          <span>Access: {currentUser?.role === 'SUPERADMIN' ? 'Root Filesystem' : (currentUser?.homePath || 'Scoped')}</span>
         </div>
       </DialogContent>
     </Dialog>

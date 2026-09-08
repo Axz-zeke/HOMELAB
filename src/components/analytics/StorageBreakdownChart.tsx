@@ -8,14 +8,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
-
-const CATEGORIES = [
-  { name: 'Videos', bytes: 3_758_096_384, color: '#6366f1' },
-  { name: 'Photos', bytes: 1_879_048_192, color: '#0ea5e9' },
-  { name: 'Audio', bytes: 536_870_912, color: '#10b981' },
-  { name: 'Documents', bytes: 268_435_456, color: '#f59e0b' },
-  { name: 'Other', bytes: 322_122_547, color: '#6b7280' },
-];
+import { FileCategoryBreakdown } from '@/lib/actions/analytics';
 
 function formatBytes(bytes: number) {
   if (bytes >= 1_073_741_824) return `${(bytes / 1_073_741_824).toFixed(1)} GB`;
@@ -23,15 +16,28 @@ function formatBytes(bytes: number) {
   return `${(bytes / 1024).toFixed(0)} KB`;
 }
 
-export function StorageBreakdownChart() {
-  const data = CATEGORIES.map((c) => ({ name: c.name, value: c.bytes, color: c.color }));
+interface StorageBreakdownChartProps {
+  data?: FileCategoryBreakdown[];
+}
+
+export function StorageBreakdownChart({ data = [] }: StorageBreakdownChartProps) {
+  if (data.length === 0) {
+    return (
+      <div className="w-full h-64 flex flex-col items-center justify-center gap-2 text-muted-foreground">
+        <p className="text-sm">No files scanned yet.</p>
+        <p className="text-xs">Upload files to see the storage breakdown.</p>
+      </div>
+    );
+  }
+
+  const chartData = data.map((c) => ({ name: c.name, value: c.bytes, color: c.color }));
 
   return (
     <div className="w-full h-64">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
-            data={data}
+            data={chartData}
             cx="50%"
             cy="50%"
             innerRadius={60}
@@ -39,7 +45,7 @@ export function StorageBreakdownChart() {
             paddingAngle={3}
             dataKey="value"
           >
-            {data.map((entry, index) => (
+            {chartData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
           </Pie>

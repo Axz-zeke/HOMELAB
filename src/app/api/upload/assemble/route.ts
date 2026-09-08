@@ -61,7 +61,12 @@ export async function POST(req: NextRequest) {
       if (!quotaCheck.allowed) {
         return NextResponse.json({
           error: quotaCheck.error || 'Storage Quota Exceeded',
-        }, { status: 400 });
+          code: 'QUOTA_EXCEEDED',
+          formattedMessage: quotaCheck.formattedMessage,
+          requiredBytes: quotaCheck.requiredBytes || incomingBytes,
+          remainingBytes: quotaCheck.remainingBytes,
+          quotaBytes: quotaCheck.quotaBytes,
+        }, { status: 403 });
       }
     }
 
@@ -80,16 +85,26 @@ export async function POST(req: NextRequest) {
     // Recursively ensure target directory exists on active disk
     await ensureDirectoryExists(targetDir);
 
-    // 3. Assemble all chunk slices sequentially into target stream
+    // 3. Assemble all chunk slices sequentially into target stream with backpressure
     const writeStream = createWriteStream(finalPhysicalPath);
     let totalBytesWritten = 0;
 
-    for (const chunkPath of chunkPaths) {
-      const chunkData = await fs.readFile(chunkPath);
-      totalBytesWritten += chunkData.length;
-      await pipeline(Readable.from(chunkData), writeStream, { end: false });
+    try {
+      for (const chunkPath of chunkPaths) {
+        const chunkData = await fs.readFile(chunkPath);
+        totalBytesWritten += chunkData.length;
+        if (!writeStream.write(chunkData)) {
+          await new Promise<void>((resolve) => writeStream.once('drain', resolve));
+        }
+      }
+    } finally {
+      await new Promise<void>((resolve, reject) => {
+        writeStream.end((err?: Error | null) => {
+          if (err) reject(err);
+          else resolve();
+        });
+      });
     }
-    writeStream.end();
 
     // Clean up temporary staging buffer folder
     try {

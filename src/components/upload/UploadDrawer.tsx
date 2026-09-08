@@ -6,11 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { v4 as uuidv4 } from 'uuid';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/lib/auth/auth-context';
+import { checkQuota } from '@/lib/actions/quota';
+import { UploadErrorDialog, UploadErrorInfo } from '@/components/upload/UploadErrorDialog';
 
 const CHUNK_SIZE = 5 * 1024 * 1024; // 5 MB per chunk
 
 type UploadJob = {
   id: string;
+  file: File;
   filename: string;
   totalChunks: number;
   uploadedChunks: Set<number>;
@@ -19,10 +23,15 @@ type UploadJob = {
 };
 
 export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
+  const { currentUser } = useAuth();
   const [open, setOpen] = useState(false);
   const [jobs, setJobs] = useState<UploadJob[]>([]);
   const pausedRef = useRef<Set<string>>(new Set());
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Global Error Dialog state
+  const [errorDialogOpen, setErrorDialogOpen] = useState(false);
+  const [errorDialogInfo, setErrorDialogInfo] = useState<UploadErrorInfo | null>(null);
 
   const updateJob = useCallback((id: string, patch: Partial<UploadJob>) => {
     setJobs((prev) =>
@@ -30,29 +39,84 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
     );
   }, []);
 
+  const resumeJob = useCallback(async (jobId: string) => {
+    const job = jobs.find((j) => j.id === jobId);
+    if (!job) return;
+
+    pausedRef.current.delete(jobId);
+    updateJob(jobId, { status: 'uploading', errorMessage: undefined });
+
+    // Query server for verified chunks received on disk buffer
+    try {
+      const res = await fetch(`/api/upload/chunk?uploadId=${jobId}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.receivedChunks)) {
+          const updatedChunks = new Set([...job.uploadedChunks, ...data.receivedChunks]);
+          updateJob(jobId, { uploadedChunks: updatedChunks });
+        }
+      }
+    } catch (e) {
+      console.warn('[UploadDrawer] Server chunk query warning:', e);
+    }
+
+    // Re-run upload loop
+    uploadFile(job.file, jobId);
+  }, [jobs, updateJob]);
+
   const uploadFile = useCallback(
-    async (file: File) => {
-      const uploadId = uuidv4();
+    async (file: File, existingId?: string) => {
+      if (!currentUser) return;
+      // 1. Pre-Upload Quota Verification
+      const quota = await checkQuota(currentUser.id, file.size);
+      if (!quota.allowed) {
+        setErrorDialogInfo({
+          type: 'storage_full',
+          title: 'Storage Space Exceeded',
+          message: quota.formattedMessage || quota.error,
+          requiredBytes: quota.requiredBytes || file.size,
+          remainingBytes: quota.remainingBytes,
+          quotaBytes: quota.quotaBytes,
+          usedBytes: quota.usedBytes,
+          fileName: file.name,
+        });
+        setErrorDialogOpen(true);
+        return;
+      }
+
+      const uploadId = existingId || uuidv4();
       const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
 
-      // Check LocalStorage for a previous partial upload of same filename+size
+      // Check LocalStorage for previous partial upload
       const resumeKey = `upload_${file.name}_${file.size}`;
       const savedState = localStorage.getItem(resumeKey);
       const resumedChunks: number[] = savedState ? JSON.parse(savedState) : [];
 
+      const currentJob = jobs.find((j) => j.id === uploadId);
+      const initialUploaded = currentJob
+        ? currentJob.uploadedChunks
+        : new Set(resumedChunks);
+
       const job: UploadJob = {
         id: uploadId,
+        file,
         filename: file.name,
         totalChunks,
-        uploadedChunks: new Set(resumedChunks),
+        uploadedChunks: initialUploaded,
         status: 'uploading',
       };
 
-      setJobs((prev) => [...prev, job]);
+      setJobs((prev) => {
+        const exists = prev.some((j) => j.id === uploadId);
+        if (exists) {
+          return prev.map((j) => (j.id === uploadId ? job : j));
+        }
+        return [...prev, job];
+      });
 
       // Upload each chunk sequentially, respecting pause state
       for (let i = 0; i < totalChunks; i++) {
-        if (job.uploadedChunks.has(i)) continue; // Skip already-uploaded chunks (resume)
+        if (job.uploadedChunks.has(i)) continue; // Skip already-uploaded chunks
 
         // Pause check loop
         while (pausedRef.current.has(uploadId)) {
@@ -67,11 +131,73 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
         fd.append('uploadId', uploadId);
         fd.append('chunkIndex', String(i));
         fd.append('chunk', chunk);
+        fd.append('userId', currentUser.id);
 
         try {
           const res = await fetch('/api/upload/chunk', { method: 'POST', body: fd });
-          if (!res.ok) throw new Error('Chunk upload failed');
-        } catch {
+          if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            if (res.status === 403 || errData.code === 'QUOTA_EXCEEDED') {
+              setErrorDialogInfo({
+                type: 'storage_full',
+                title: 'Storage Space Exceeded',
+                message: errData.formattedMessage || errData.error || 'Storage quota exceeded mid-transfer.',
+                requiredBytes: errData.requiredBytes || file.size,
+                remainingBytes: errData.remainingBytes,
+                quotaBytes: errData.quotaBytes,
+                fileName: file.name,
+              });
+              setErrorDialogOpen(true);
+              updateJob(uploadId, { status: 'error', errorMessage: 'Storage Quota Exceeded' });
+              return;
+            }
+
+            if (res.status === 507 || errData.code === 'DISK_FULL') {
+              setErrorDialogInfo({
+                type: 'server_error',
+                title: 'Upload Failed',
+                message: errData.error || 'Target storage drive is low on physical disk space.',
+                serverDetails: `Physical staging drive out of buffer space. Required ${((chunk.size)/(1024*1024)).toFixed(1)} MB.`,
+                fileName: file.name,
+                onRetry: () => resumeJob(uploadId),
+              });
+              setErrorDialogOpen(true);
+              updateJob(uploadId, { status: 'error', errorMessage: 'Disk full' });
+              return;
+            }
+
+            throw new Error(errData.error || 'Chunk upload failed');
+          }
+        } catch (chunkErr: any) {
+          const isNetworkError =
+            !navigator.onLine ||
+            chunkErr instanceof TypeError ||
+            chunkErr?.message?.toLowerCase().includes('network') ||
+            chunkErr?.message?.toLowerCase().includes('failed to fetch') ||
+            chunkErr?.message?.toLowerCase().includes('connection');
+
+          if (isNetworkError) {
+            setErrorDialogInfo({
+              type: 'network_error',
+              title: 'Upload Interrupted',
+              message: 'Network connection lost during upload. Please check your internet connection and try again.',
+              currentChunk: i,
+              totalChunks,
+              fileName: file.name,
+              onRetry: () => resumeJob(uploadId),
+            });
+            setErrorDialogOpen(true);
+          } else {
+            setErrorDialogInfo({
+              type: 'server_error',
+              title: 'Upload Failed',
+              message: chunkErr?.message || 'Server error uploading chunk.',
+              fileName: file.name,
+              onRetry: () => resumeJob(uploadId),
+            });
+            setErrorDialogOpen(true);
+          }
+
           updateJob(uploadId, { status: 'error', errorMessage: `Failed on chunk ${i}` });
           return;
         }
@@ -92,16 +218,43 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
             totalChunks,
             destinationPath,
             filename: file.name,
+            userId: currentUser.id,
           }),
         });
-        if (!res.ok) throw new Error('Assembly failed');
+
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok || !data.success) {
+          if (res.status === 403 || data.code === 'QUOTA_EXCEEDED') {
+            setErrorDialogInfo({
+              type: 'storage_full',
+              title: 'Storage Space Exceeded',
+              message: data.formattedMessage || data.error,
+              requiredBytes: data.requiredBytes || file.size,
+              remainingBytes: data.remainingBytes,
+              quotaBytes: data.quotaBytes,
+              fileName: file.name,
+            });
+            setErrorDialogOpen(true);
+          } else {
+            setErrorDialogInfo({
+              type: 'server_error',
+              title: 'Upload Failed',
+              message: data.error || 'Failed to assemble file on physical storage',
+              fileName: file.name,
+            });
+            setErrorDialogOpen(true);
+          }
+          throw new Error(data.error || 'Assembly failed');
+        }
+
         localStorage.removeItem(resumeKey);
         updateJob(uploadId, { status: 'complete' });
       } catch {
         updateJob(uploadId, { status: 'error', errorMessage: 'Failed to assemble file' });
       }
     },
-    [destinationPath, updateJob]
+    [destinationPath, updateJob, currentUser?.id, jobs, resumeJob]
   );
 
   const handleFiles = (files: FileList | null) => {
@@ -118,6 +271,10 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
     } else {
       pausedRef.current.delete(jobId);
       updateJob(jobId, { status: 'uploading' });
+      const job = jobs.find((j) => j.id === jobId);
+      if (job) {
+        uploadFile(job.file, jobId);
+      }
     }
   };
 
@@ -154,7 +311,9 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
               >
                 <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
                 <p className="text-sm font-medium">Drop files here or click to browse</p>
-                <p className="text-xs text-muted-foreground mt-1">Chunked upload (5 MB parts) — supports multi-GB files</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Unlimited size chunked upload (5 MB parts) — bounded by user quota
+                </p>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -175,7 +334,15 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
                           <span className="text-xs font-medium truncate flex-1">{job.filename}</span>
                           <div className="flex items-center gap-1 shrink-0">
                             {job.status === 'complete' && <CheckCircle className="w-4 h-4 text-green-500" />}
-                            {job.status === 'error' && <AlertCircle className="w-4 h-4 text-destructive" />}
+                            {job.status === 'error' && (
+                              <button
+                                onClick={() => resumeJob(job.id)}
+                                title="Retry upload"
+                                className="text-destructive hover:underline"
+                              >
+                                <AlertCircle className="w-4 h-4" />
+                              </button>
+                            )}
                             {(job.status === 'uploading' || job.status === 'paused') && (
                               <Button
                                 variant="ghost"
@@ -212,6 +379,13 @@ export function UploadDrawer({ destinationPath }: { destinationPath: string }) {
           </Card>
         </div>
       )}
+
+      {/* Global Error Dialog Popup */}
+      <UploadErrorDialog
+        open={errorDialogOpen}
+        onOpenChange={setErrorDialogOpen}
+        errorInfo={errorDialogInfo}
+      />
     </>
   );
 }

@@ -14,10 +14,12 @@ import {
   UserRecord,
 } from '@/lib/users/db';
 import { logSystemEvent } from '@/lib/audit/logger';
+import { setSessionCookie, clearSessionCookie, getSessionUser } from '@/lib/auth/session';
 
 /**
  * Server Action: Authenticates a user against the database by validating
  * their entered password against the stored bcrypt password_hash.
+ * On success, issues a secure HTTP session cookie.
  */
 export async function authenticateUserAction(
   identifier: string,
@@ -44,6 +46,9 @@ export async function authenticateUserAction(
     }
 
     const enrichedUser = await enrichUserRecord(userRecord);
+
+    // Issue secure session cookie (httpOnly, sameSite: lax, secure: false for LAN HTTP)
+    await setSessionCookie(userRecord.id);
 
     await logSystemEvent({
       userId: userRecord.id,
@@ -293,3 +298,44 @@ export async function deleteUserAction(
 export async function getUsersAction(): Promise<User[]> {
   return getAllUsers();
 }
+
+/**
+ * Server Action: Clears active session cookies upon logout.
+ */
+export async function logoutAction(): Promise<{ success: boolean }> {
+  try {
+    await clearSessionCookie();
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
+}
+
+/**
+ * Server Action: Switches active user session by validating user existence and issuing new session cookie.
+ */
+export async function switchUserAction(
+  userId: string
+): Promise<{ success: boolean; user?: User; error?: string }> {
+  try {
+    const user = await enrichUserRecord({
+      ...(await getRawUserRecords()).find((u) => u.id === userId)!,
+    });
+    if (!user) {
+      return { success: false, error: 'User not found' };
+    }
+    await setSessionCookie(user.id);
+    return { success: true, user };
+  } catch (err: any) {
+    return { success: false, error: err?.message || 'Failed to switch user.' };
+  }
+}
+
+/**
+ * Server Action: Fetches the currently authenticated session user.
+ * Strictly returns null if no valid session exists (never defaults to superadmin).
+ */
+export async function getSessionUserAction(): Promise<User | null> {
+  return getSessionUser();
+}
+

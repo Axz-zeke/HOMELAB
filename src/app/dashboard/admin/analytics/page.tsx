@@ -1,4 +1,5 @@
 import { getAllUsersStorageStats } from '@/lib/actions/quota';
+import { getStorageBreakdownAction } from '@/lib/actions/analytics';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { StorageBreakdownChart } from '@/components/analytics/StorageBreakdownChart';
 import { UserQuotaChart } from '@/components/analytics/UserQuotaChart';
@@ -11,7 +12,10 @@ function formatBytes(bytes: number) {
 }
 
 export default async function AnalyticsPage() {
-  const stats = (await getAllUsersStorageStats()).filter(Boolean) as Awaited<ReturnType<typeof getAllUsersStorageStats>>[number][];
+  const [stats, breakdownData] = await Promise.all([
+    getAllUsersStorageStats().then((s) => s.filter(Boolean) as Awaited<ReturnType<typeof getAllUsersStorageStats>>[number][]),
+    getStorageBreakdownAction(),
+  ]);
 
   const quotaStats = stats.map((s) => ({
     name: s!.name,
@@ -76,7 +80,7 @@ export default async function AnalyticsPage() {
             <CardDescription>Breakdown across all drives and users.</CardDescription>
           </CardHeader>
           <CardContent>
-            <StorageBreakdownChart />
+            <StorageBreakdownChart data={breakdownData} />
           </CardContent>
         </Card>
 

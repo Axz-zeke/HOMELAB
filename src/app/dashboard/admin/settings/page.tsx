@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { NETWORK_STATUS } from '@/lib/data/mock-db';
+import { getNetworkSettingsAction, saveNetworkSettingsAction } from '@/lib/actions/network';
 import {
   Settings,
   Wifi,
@@ -22,8 +22,8 @@ import {
 } from 'lucide-react';
 
 export default function SettingsPage() {
-  const [tailscaleIp, setTailscaleIp] = useState(NETWORK_STATUS.tailscaleIp);
-  const [magicDns, setMagicDns] = useState(NETWORK_STATUS.magicDns);
+  const [tailscaleIp, setTailscaleIp] = useState('');
+  const [magicDns, setMagicDns] = useState('');
   const [lanPort, setLanPort] = useState('3000');
   const [tempUploadPath, setTempUploadPath] = useState('D:\\temp_uploads');
   const [chunkSizeMB, setChunkSizeMB] = useState('5');
@@ -39,9 +39,20 @@ export default function SettingsPage() {
         }
       });
     });
+
+    getNetworkSettingsAction().then((settings) => {
+      if (settings.tailscaleIp) setTailscaleIp(settings.tailscaleIp);
+      if (settings.magicDns) setMagicDns(settings.magicDns);
+      if (settings.lanPort) setLanPort(settings.lanPort);
+    });
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    await saveNetworkSettingsAction({
+      tailscaleIp,
+      magicDns,
+      lanPort,
+    });
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
   };

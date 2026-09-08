@@ -2,10 +2,24 @@
 
 import { getUserById, getAllUsers, calculateDirectorySize } from '@/lib/users/db';
 
+function formatStorageBytes(bytes: number): string {
+  if (bytes >= 1024 * 1024 * 1024) {
+    return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
+  }
+  if (bytes >= 1024 * 1024) {
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+  if (bytes >= 1024) {
+    return `${(bytes / 1024).toFixed(1)} KB`;
+  }
+  return `${bytes} B`;
+}
+
 /**
  * Server-side quota boundary enforcement. Called BEFORE approving any write/upload.
+ * Supports unlimited file sizes up to the user's available quota boundary.
  * Calculates live directory size of user's home directory on disk.
- * If used_bytes + incoming_file_size > storage_quota_bytes, rejects the upload.
+ * If liveUsedBytes + incoming_file_size > storage_quota_bytes, rejects the upload.
  */
 export async function checkQuota(
   userId: string,
@@ -13,38 +27,49 @@ export async function checkQuota(
 ): Promise<{
   allowed: boolean;
   error?: string;
+  formattedMessage?: string;
   remainingBytes?: number;
   usedBytes?: number;
   quotaBytes?: number | null;
+  requiredBytes?: number;
 }> {
   try {
     const user = await getUserById(userId);
     if (!user) {
-      return { allowed: false, error: 'User account not found.' };
+      return { allowed: false, error: 'User account not found.', requiredBytes: uploadSizeBytes };
     }
 
     const quotaBytes = user.storage_quota_bytes ?? user.storageQuotaBytes;
 
     // Unlimited quota for Superadmin or users configured with null quota
     if (quotaBytes === null || quotaBytes === undefined) {
-      return { allowed: true, quotaBytes: null };
+      return {
+        allowed: true,
+        quotaBytes: null,
+        requiredBytes: uploadSizeBytes,
+        remainingBytes: Infinity,
+      };
     }
 
     // Dynamic calculation of user's current disk usage directly from physical directory
     const homePath = user.home_directory_path || '';
     const liveUsedBytes = homePath ? await calculateDirectorySize(homePath) : (user.used_bytes || 0);
 
-    const remaining = quotaBytes - liveUsedBytes;
+    const remaining = Math.max(0, quotaBytes - liveUsedBytes);
 
     if (liveUsedBytes + uploadSizeBytes > quotaBytes) {
-      const remainingMB = Math.max(0, (remaining / (1024 * 1024))).toFixed(1);
-      const quotaMB = (quotaBytes / (1024 * 1024)).toFixed(1);
+      const reqStr = formatStorageBytes(uploadSizeBytes);
+      const availStr = formatStorageBytes(remaining);
+      const formattedMessage = `This file requires ${reqStr}, but you only have ${availStr} available.`;
+
       return {
         allowed: false,
-        remainingBytes: Math.max(0, remaining),
+        remainingBytes: remaining,
         usedBytes: liveUsedBytes,
         quotaBytes,
-        error: `Storage Quota Exceeded. You have ${remainingMB} MB remaining of your ${quotaMB} MB quota.`,
+        requiredBytes: uploadSizeBytes,
+        formattedMessage,
+        error: `Storage Space Exceeded. ${formattedMessage}`,
       };
     }
 
@@ -53,10 +78,15 @@ export async function checkQuota(
       remainingBytes: remaining - uploadSizeBytes,
       usedBytes: liveUsedBytes,
       quotaBytes,
+      requiredBytes: uploadSizeBytes,
     };
   } catch (err: any) {
     console.error('[checkQuota] Error calculating quota:', err);
-    return { allowed: false, error: 'Failed to verify storage quota.' };
+    return {
+      allowed: false,
+      error: 'Failed to verify storage quota.',
+      requiredBytes: uploadSizeBytes,
+    };
   }
 }
 

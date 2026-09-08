@@ -7,6 +7,7 @@ import { getActivePrimaryPool, getStoragePoolRegistry } from '@/lib/storage/regi
 import { logSystemEvent } from '@/lib/audit/logger';
 import { AuditAction, FileItem, FileCategory, UserRole } from '@/lib/types';
 import { getUserById } from '@/lib/users/db';
+import { getSessionUser } from '@/lib/auth/session';
 
 function inferCategory(filename: string): FileCategory {
   const ext = path.extname(filename).replace('.', '').toLowerCase();
@@ -35,7 +36,7 @@ function sanitizePathSegment(segment: string): string {
  */
 export async function readDirectoryContents(
   relativePath: string = '',
-  userId: string = 'usr_superadmin'
+  userId?: string
 ): Promise<{
   success: boolean;
   currentPath: string;
@@ -46,14 +47,31 @@ export async function readDirectoryContents(
   error?: string;
 }> {
   try {
+    let effectiveUserId = userId;
+    if (!effectiveUserId) {
+      const sessionUser = await getSessionUser();
+      if (!sessionUser) {
+        return {
+          success: false,
+          currentPath: relativePath,
+          physicalPath: '',
+          storageDrive: '',
+          breadcrumbs: [],
+          items: [],
+          error: 'Unauthorized: No active session found.',
+        };
+      }
+      effectiveUserId = sessionUser.id;
+    }
+
     const primaryPool = await getActivePrimaryPool();
     const storageRoot = path.resolve(primaryPool.targetDirectory);
 
     // Find requesting user from dynamic database for RBAC enforcement
-    const user = await getUserById(userId);
+    const user = await getUserById(effectiveUserId);
     const role = user?.role || UserRole.USER;
     const isPrivileged = role === UserRole.SUPERADMIN || role === UserRole.ADMIN;
-    const username = user?.username || userId;
+    const username = user?.username || effectiveUserId;
 
     // Normalize requested relative path
     let cleanRel = (relativePath || '').replace(/\\/g, '/').replace(/\/+/g, '/').trim();
@@ -168,42 +186,45 @@ export async function readDirectoryContents(
     // Read live directory contents from host disk
     const dirents = await fs.readdir(/*turbopackIgnore: true*/ targetPhysicalDir, { withFileTypes: true });
 
-    const items: FileItem[] = [];
+    // ── Parallel stat: all N stat() calls run concurrently instead of serially ──
+    //    Time = max(single_stat_latency) instead of sum(all_stat_latencies)
+    const itemResults = await Promise.all(
+      dirents
+        .filter((d) => !d.name.startsWith('.') && d.name !== 'Thumbs.db')
+        .map(async (dirent) => {
+          const fullItemPath = path.join(targetPhysicalDir, dirent.name);
+          let sizeBytes = 0;
+          let modifiedAt = new Date();
 
-    for (const dirent of dirents) {
-      // Ignore hidden dot files and chunk staging folders
-      if (dirent.name.startsWith('.') || dirent.name === 'Thumbs.db') continue;
+          try {
+            const stats = await fs.stat(fullItemPath);
+            sizeBytes = dirent.isDirectory() ? 0 : stats.size;
+            modifiedAt = stats.mtime;
+          } catch {
+            // file locked or inaccessible
+          }
 
-      const fullItemPath = path.join(targetPhysicalDir, dirent.name);
-      let sizeBytes = 0;
-      let modifiedAt = new Date();
+          const itemLogicalPath = logicalDisplayPath === '/'
+            ? `/${dirent.name}`
+            : `${logicalDisplayPath}/${dirent.name}`;
 
-      try {
-        const stats = await fs.stat(fullItemPath);
-        sizeBytes = dirent.isDirectory() ? 0 : stats.size;
-        modifiedAt = stats.mtime;
-      } catch {
-        // file locked or inaccessible
-      }
+          return {
+            id: `file-${dirent.name}-${modifiedAt.getTime()}`,
+            name: dirent.name,
+            path: itemLogicalPath,
+            isDirectory: dirent.isDirectory(),
+            sizeBytes,
+            extension: dirent.isDirectory() ? undefined : path.extname(dirent.name).replace('.', '').toLowerCase(),
+            category: dirent.isDirectory() ? ('other' as any) : inferCategory(dirent.name),
+            modifiedAt,
+            driveVolumeId: `vol-${primaryPool.driveLetter}`,
+            physicalMountPath: targetPhysicalDir,
+            physicalDiskLetter: primaryPool.driveLetter,
+          } satisfies FileItem;
+        })
+    );
 
-      const itemLogicalPath = logicalDisplayPath === '/'
-        ? `/${dirent.name}`
-        : `${logicalDisplayPath}/${dirent.name}`;
-
-      items.push({
-        id: `file-${dirent.name}-${modifiedAt.getTime()}`,
-        name: dirent.name,
-        path: itemLogicalPath,
-        isDirectory: dirent.isDirectory(),
-        sizeBytes,
-        extension: dirent.isDirectory() ? undefined : path.extname(dirent.name).replace('.', '').toLowerCase(),
-        category: dirent.isDirectory() ? ('other' as any) : inferCategory(dirent.name),
-        modifiedAt,
-        driveVolumeId: `vol-${primaryPool.driveLetter}`,
-        physicalMountPath: targetPhysicalDir,
-        physicalDiskLetter: primaryPool.driveLetter,
-      });
-    }
+    const items: FileItem[] = itemResults;
 
     // Sort: Folders first (A-Z), then Files (A-Z)
     items.sort((a, b) => {
@@ -254,9 +275,18 @@ export async function readDirectoryContents(
 export async function createPhysicalDirectory(
   parentRelativePath: string,
   folderName: string,
-  userId: string = 'user-1'
+  userId?: string
 ): Promise<{ success: boolean; folderPath?: string; error?: string }> {
   try {
+    let effectiveUserId = userId;
+    if (!effectiveUserId) {
+      const sessionUser = await getSessionUser();
+      if (!sessionUser) {
+        return { success: false, error: 'Unauthorized: No active session found.' };
+      }
+      effectiveUserId = sessionUser.id;
+    }
+
     const cleanFolderName = folderName.trim().replace(/[<>:"/\\|?*]/g, '_');
     if (!cleanFolderName || cleanFolderName === '.' || cleanFolderName === '..') {
       return { success: false, error: 'Invalid folder name.' };
@@ -265,10 +295,10 @@ export async function createPhysicalDirectory(
     const primaryPool = await getActivePrimaryPool();
     const storageRoot = path.resolve(primaryPool.targetDirectory);
 
-    const user = await getUserById(userId);
+    const user = await getUserById(effectiveUserId);
     const role = user?.role || UserRole.USER;
     const isPrivileged = role === UserRole.SUPERADMIN || role === UserRole.ADMIN;
-    const username = user?.username || userId;
+    const username = user?.username || effectiveUserId;
 
     let cleanRel = (parentRelativePath || '').replace(/\\/g, '/').replace(/\/+/g, '/').trim();
     if (cleanRel.startsWith('/')) cleanRel = cleanRel.substring(1);
@@ -291,7 +321,7 @@ export async function createPhysicalDirectory(
     await fs.mkdir(fullNewFolderPath, { recursive: true });
 
     await logSystemEvent({
-      userId,
+      userId: effectiveUserId,
       actionType: AuditAction.FILE_UPLOADED,
       targetPath: fullNewFolderPath,
       ipAddress: '127.0.0.1 (Create Folder)',
@@ -313,16 +343,25 @@ export async function createPhysicalDirectory(
 export async function archiveFileAction(
   fileRelativePath: string,
   filename: string,
-  userId: string = 'usr_superadmin'
+  userId?: string
 ): Promise<{ success: boolean; archivedPath?: string; error?: string }> {
   try {
+    let effectiveUserId = userId;
+    if (!effectiveUserId) {
+      const sessionUser = await getSessionUser();
+      if (!sessionUser) {
+        return { success: false, error: 'Unauthorized: No active session found.' };
+      }
+      effectiveUserId = sessionUser.id;
+    }
+
     const primaryPool = await getActivePrimaryPool();
     const storageRoot = path.resolve(primaryPool.targetDirectory);
 
-    const user = await getUserById(userId);
+    const user = await getUserById(effectiveUserId);
     const role = user?.role || UserRole.USER;
     const isPrivileged = role === UserRole.SUPERADMIN || role === UserRole.ADMIN;
-    const username = user?.username || userId;
+    const username = user?.username || effectiveUserId;
 
     let cleanRel = (fileRelativePath || '').replace(/\\/g, '/').replace(/\/+/g, '/').trim();
     if (cleanRel.startsWith('/')) cleanRel = cleanRel.substring(1);
@@ -373,10 +412,10 @@ export async function archiveFileAction(
 
     let destinationDir: string;
     if (archivePool) {
-      destinationDir = path.join(archivePool.targetDirectory, 'Recycle_Bin', userId);
+      destinationDir = path.join(archivePool.targetDirectory, 'Recycle_Bin', effectiveUserId);
     } else {
       // Fallback: recycle bin inside primary pool
-      destinationDir = path.join(storageRoot, '.recycle_bin', userId);
+      destinationDir = path.join(storageRoot, '.recycle_bin', effectiveUserId);
     }
 
     // Timestamp-prefix prevents name collisions in the bin
@@ -402,7 +441,7 @@ export async function archiveFileAction(
 
     // ── 6. Audit log ──────────────────────────────────────────────────────
     await logSystemEvent({
-      userId,
+      userId: effectiveUserId,
       actionType: AuditAction.FILE_DELETED,
       targetPath: `${sourcePhysical} ➔ ${destinationPath}`,
       ipAddress: `127.0.0.1 (Archive — ${isDirectory ? 'Directory' : 'File'})`,

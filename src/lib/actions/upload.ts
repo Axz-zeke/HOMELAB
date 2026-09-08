@@ -7,6 +7,7 @@ import { getStoragePoolRegistry } from '@/lib/storage/registry';
 import { logSystemEvent } from '@/lib/audit/logger';
 import { AuditAction } from '@/lib/types';
 import { checkQuota } from '@/lib/actions/quota';
+import { getSessionUser } from '@/lib/auth/session';
 
 /**
  * Server Action: Writes a file buffer directly to the active physical storage pool (or cascading overflow drive).
@@ -15,7 +16,7 @@ export async function writePhysicalFileAction(
   filename: string,
   base64Data: string,
   destinationPath?: string,
-  userId: string = 'usr_superadmin'
+  userId?: string
 ): Promise<{
   success: boolean;
   physicalPath: string;
@@ -27,12 +28,26 @@ export async function writePhysicalFileAction(
   error?: string;
 }> {
   try {
+    let effectiveUserId = userId;
+    if (!effectiveUserId) {
+      const sessionUser = await getSessionUser();
+      if (!sessionUser) {
+        return {
+          success: false,
+          physicalPath: '',
+          bytesWritten: 0,
+          error: 'Unauthorized: No active user session.',
+        };
+      }
+      effectiveUserId = sessionUser.id;
+    }
+
     const buffer = Buffer.from(base64Data, 'base64');
     const safeFilename = path.basename(filename);
 
     // Enforce quota boundary for the user before writing to physical disk
-    if (userId) {
-      const quota = await checkQuota(userId, buffer.length);
+    if (effectiveUserId) {
+      const quota = await checkQuota(effectiveUserId, buffer.length);
       if (!quota.allowed) {
         return {
           success: false,
@@ -52,7 +67,7 @@ export async function writePhysicalFileAction(
     await fs.writeFile(finalPhysicalPath, buffer);
 
     await logSystemEvent({
-      userId,
+      userId: effectiveUserId,
       actionType: AuditAction.FILE_UPLOADED,
       targetPath: `${finalPhysicalPath} [Drive ${pool.driveLetter}: (Priority ${pool.priority})${isCascaded ? ' - CASCADED' : ''}]`,
       ipAddress: '127.0.0.1 (Local Server Action)',

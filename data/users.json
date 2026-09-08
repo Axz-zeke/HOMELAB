@@ -11,7 +11,9 @@
     "used_bytes": 0,
     "is_locked": true,
     "created_at": "2025-01-01T00:00:00.000Z",
-    "updated_at": "2026-09-06T12:31:17.154Z"
+    "updated_at": "2026-09-08T13:38:22.738Z",
+    "last_media_backup_at": "2026-09-08T13:23:10.553Z",
+    "auto_media_backup_enabled": false
   },
   {
     "id": "usr_28f49d15",
@@ -25,20 +27,49 @@
     "used_bytes": 0,
     "is_locked": false,
     "created_at": "2026-09-06T12:46:30.685Z",
-    "updated_at": "2026-09-06T13:00:57.831Z"
+    "updated_at": "2026-09-08T13:24:19.120Z",
+    "auto_media_backup_enabled": true
   },
   {
-    "id": "usr_bcc59278",
-    "username": "sai_maasim_com",
-    "email": "sai@maasim.com",
-    "name": "SAI",
-    "password_hash": "$2b$10$5OCSLP0Pybybqax2aT3RkezUS0WELjAl8XkefabPnobT.eySKs3yW",
-    "role": "ADMIN",
-    "home_directory_path": "D:\\NAS_Storage\\user_homes\\sai_maasim_com",
-    "storage_quota_bytes": 1073741824,
+    "id": "usr_faf9ca5c",
+    "username": "fernan",
+    "email": "fernan@gmail.com",
+    "name": "Fernan",
+    "password_hash": "$2b$10$fB2oy5l1DXCPcm2TlM8ZUOHSIz7pyzhiyOZlPPLjt9F4iNg2ma8/y",
+    "role": "USER",
+    "home_directory_path": "D:\\NAS_Storage\\user_homes\\fernan",
+    "storage_quota_bytes": 53687091200,
     "used_bytes": 0,
     "is_locked": false,
-    "created_at": "2026-09-06T13:02:32.198Z",
-    "updated_at": "2026-09-06T13:02:44.257Z"
+    "created_at": "2026-09-07T02:53:51.192Z",
+    "updated_at": "2026-09-07T02:53:51.192Z"
+  },
+  {
+    "id": "usr_3aa8439a",
+    "username": "sai",
+    "email": "sai@gmail.com",
+    "name": "Crishaira Silva",
+    "password_hash": "$2b$10$FF3ejtroPMFzAvBAqRebFePoaj/vIUAqLKnVDhy9WuhSb0bshJsLG",
+    "role": "ADMIN",
+    "home_directory_path": "D:\\NAS_Storage\\user_homes\\sai",
+    "storage_quota_bytes": 1073741824000,
+    "used_bytes": 0,
+    "is_locked": false,
+    "created_at": "2026-09-08T14:29:51.323Z",
+    "updated_at": "2026-09-08T14:43:39.518Z"
+  },
+  {
+    "id": "usr_06ad14e9",
+    "username": "axz_zeke",
+    "email": "axz.zeke@gmail.com",
+    "name": "Alexander Lopez",
+    "password_hash": "$2b$10$jwZekIXtEoRC3tpKfsYeieb9S1eJb78kVrp.nM0CKT.yuNYhizKju",
+    "role": "ADMIN",
+    "home_directory_path": "D:\\NAS_Storage\\user_homes\\axz_zeke",
+    "storage_quota_bytes": null,
+    "used_bytes": 0,
+    "is_locked": false,
+    "created_at": "2026-09-08T14:30:35.725Z",
+    "updated_at": "2026-09-08T14:36:14.911Z"
   }
 ]
